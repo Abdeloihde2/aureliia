@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AURELIA | The Forest Edit</title>
+    <title>AURELIA | Curated Product Recommendations</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +19,8 @@
             --bg-card: #FFFFFF;
             --text-main: #1A3C34; /* Dark Green Text */
             --text-light: #5C6B66; /* Muted Green-Grey */
-            --text-white: #F2EFE9; /* Cream Text */
+            --text-white: #FFFFFF; /* Pure White for better contrast */
+            --text-off-white: #E0E0E0; /* Softer white for descriptions */
             --accent: #D4AF37; /* Gold */
             --border: rgba(26, 60, 52, 0.1);
             --font-head: 'Playfair Display', serif;
@@ -45,8 +46,6 @@
         button { border: none; background: none; cursor: pointer; font-family: inherit; }
 
         /* --- 3. ANIMATIONS --- */
-        
-        /* Intro Animations (Hero) */
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes slideInLeft { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
         @keyframes scaleIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
@@ -62,10 +61,10 @@
         .delay-3 { animation-delay: 0.6s; }
         .delay-4 { animation-delay: 0.8s; }
 
-        /* SCROLL TRIGGER CLASSES (Used by JS) */
+        /* SCROLL TRIGGER CLASSES */
         .card-hidden {
             opacity: 0;
-            transform: translateY(60px); /* Start lower */
+            transform: translateY(60px);
             transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
         .card-visible {
@@ -75,46 +74,58 @@
 
         /* --- 4. HEADER --- */
         header {
-            position: absolute; top: 0; left: 0; width: 100%; padding: 25px 50px;
+            position: absolute; top: 0; left: 0; width: 100%; padding: 30px 60px;
             display: flex; justify-content: space-between; align-items: center;
             z-index: 1000;
         }
-        .logo { font-family: var(--font-head); font-size: 26px; font-weight: 700; letter-spacing: 1px; color: var(--text-white); }
+        .logo { font-family: var(--font-head); font-size: 28px; font-weight: 700; letter-spacing: 1px; color: var(--text-white); }
         
-        .nav-links { display: flex; gap: 40px; }
-        .nav-link { font-size: 11px; font-weight: 600; color: var(--text-white); text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.8; transition: 0.3s; }
+        .nav-links { display: flex; gap: 50px; }
+        .nav-link { font-size: 12px; font-weight: 500; color: var(--text-white); text-transform: uppercase; letter-spacing: 2px; opacity: 0.9; transition: 0.3s; }
         .nav-link:hover { opacity: 1; color: var(--accent); }
 
-        /* --- 5. HERO SECTION --- */
+        /* --- 5. HERO SECTION (REDESIGNED) --- */
         .hero-split {
-            display: grid; grid-template-columns: 45% 55%;
+            display: grid; grid-template-columns: 50% 50%; /* Adjusted for better spacing */
             height: 100vh; width: 100%; position: relative; overflow: hidden;
         }
 
         .hero-left {
             background-color: var(--bg-dark);
-            padding: 100px 60px;
+            padding: 100px 80px; /* Increased Padding */
             display: flex; flex-direction: column; justify-content: center;
             color: var(--text-white);
             position: relative; z-index: 2;
         }
+        
         .hero-tag {
-            font-size: 12px; letter-spacing: 2px; text-transform: uppercase; 
-            color: var(--accent); margin-bottom: 20px; font-weight: 600;
+            font-size: 11px; letter-spacing: 3px; text-transform: uppercase; 
+            color: var(--accent); margin-bottom: 25px; font-weight: 600;
+            border-left: 1px solid var(--accent); padding-left: 15px; /* Added accent line */
         }
+        
         .hero-title {
-            font-family: var(--font-head); font-size: 72px; line-height: 1; 
-            margin-bottom: 30px; font-weight: 400;
+            font-family: var(--font-head); font-size: 64px; line-height: 1.1; 
+            margin-bottom: 35px; font-weight: 400; color: var(--text-white);
         }
+        
         .hero-desc {
-            font-size: 15px; line-height: 1.6; opacity: 0.8; max-width: 400px; margin-bottom: 50px;
+            font-size: 16px; line-height: 1.7; color: var(--text-off-white); 
+            max-width: 480px; margin-bottom: 50px; font-weight: 300;
         }
+        
         .btn-gold {
-            background: var(--accent); color: var(--bg-dark); padding: 18px 40px;
-            font-size: 12px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700;
+            background: var(--accent); color: var(--bg-dark); padding: 20px 45px;
+            font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700;
             display: inline-block; width: fit-content; transition: 0.3s; border: 1px solid var(--accent);
+            border-radius: 2px;
         }
         .btn-gold:hover { background: transparent; color: var(--accent); }
+
+        .hero-disclaimer {
+            margin-top: 25px; font-size: 10px; color: var(--text-off-white); 
+            opacity: 0.5; font-style: italic; max-width: 400px; line-height: 1.5;
+        }
 
         .hero-right {
             background-color: var(--bg-body);
@@ -123,38 +134,40 @@
         }
         
         .hero-main-img {
-            position: absolute; right: 0; top: 0; width: 85%; height: 100%; 
-            object-fit: cover; opacity: 0.9;
+            position: absolute; right: 0; top: 0; width: 100%; height: 100%; 
+            object-fit: cover; opacity: 1; /* Changed for better visibility */
+            filter: brightness(0.9); /* Slight dim for text contrast if needed */
         }
 
-        /* Floating Cards */
+        /* Floating Cards (Updated Text Styles) */
         .float-card {
-            position: absolute; background: #fff; padding: 15px; width: 200px;
+            position: absolute; background: #fff; padding: 12px; width: 220px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);
             transition: transform 0.4s ease; cursor: pointer; z-index: 10;
         }
         .float-card:hover { transform: translateY(-10px); z-index: 15; }
         
-        .fc-img { width: 100%; aspect-ratio: 1; object-fit: cover; margin-bottom: 15px; filter: grayscale(20%); }
+        .fc-img { width: 100%; aspect-ratio: 1; object-fit: cover; margin-bottom: 15px; filter: grayscale(10%); }
         .float-card:hover .fc-img { filter: grayscale(0%); }
         
-        .fc-title { font-family: var(--font-head); font-size: 18px; margin-bottom: 5px; color: var(--text-main); }
+        .fc-title { font-family: var(--font-head); font-size: 16px; margin-bottom: 4px; color: var(--text-main); font-weight: 600; }
+        .fc-sub { font-size: 10px; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; display:block; }
         .fc-link { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); font-weight: 700; }
 
-        .fc-1 { top: 20%; left: -50px; } 
-        .fc-2 { top: 50%; left: 80px; }  
-        .fc-3 { bottom: 15%; left: -30px; } 
+        .fc-1 { top: 20%; left: -60px; } 
+        .fc-2 { bottom: 20%; left: 40px; }  
+        .fc-3 { top: 50%; right: -20px; display: none; } /* Hid 3rd card for cleaner look, or re-enable */
 
         /* --- 6. PRODUCT GRID SECTION --- */
-        .section { padding: 100px 40px; max-width: var(--container); margin: 0 auto; }
+        .section { padding: 120px 40px; max-width: var(--container); margin: 0 auto; }
         .section-header { 
             display: flex; justify-content: space-between; align-items: end; 
-            margin-bottom: 60px; border-bottom: 1px solid var(--border); padding-bottom: 20px;
+            margin-bottom: 80px; border-bottom: 1px solid var(--border); padding-bottom: 30px;
         }
         .sh-title h2 { font-family: var(--font-head); font-size: 48px; color: var(--text-main); }
         .sh-desc { font-size: 14px; color: var(--text-light); text-transform: uppercase; letter-spacing: 1px; }
 
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 40px 20px; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 50px 30px; }
         
         .product-card { cursor: pointer; position: relative; }
         
@@ -184,14 +197,13 @@
         #view-home, #view-product { display: none; opacity: 0; transition: opacity 0.5s ease; }
         #view-home.active, #view-product.active { display: block; opacity: 1; }
 
-        .pdp-wrapper { padding-top: 80px; min-height: 100vh; background: var(--bg-body); }
+        .pdp-wrapper { padding-top: 100px; min-height: 100vh; background: var(--bg-body); }
         
-        /* BACK BUTTON */
         .back-bar { 
-            max-width: 1300px; margin: 0 auto; padding: 0 40px; margin-bottom: 20px;
+            max-width: 1300px; margin: 0 auto; padding: 0 40px; margin-bottom: 30px;
         }
         .back-btn { 
-            font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; 
+            font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; 
             color: var(--text-light); cursor: pointer; display: inline-flex; align-items: center; gap: 10px;
             transition: 0.3s; font-weight: 600;
         }
@@ -251,14 +263,13 @@
         /* --- RESPONSIVE --- */
         @media (max-width: 900px) {
             .hero-split { grid-template-columns: 1fr; height: auto; }
-            .hero-left { padding: 60px 30px; height: 60vh; }
-            .hero-right { height: 50vh; }
-            .hero-main-img { width: 100%; position: relative; }
+            .hero-left { padding: 80px 30px; height: 65vh; }
+            .hero-right { height: 45vh; }
+            .hero-title { font-size: 42px; }
             
-            .float-card { width: 140px; padding: 10px; }
+            .float-card { width: 160px; padding: 10px; }
             .fc-1 { top: 10%; left: 10px; }
-            .fc-2 { top: 40%; left: auto; right: 10px; }
-            .fc-3 { bottom: 10%; left: 20px; }
+            .fc-2 { bottom: 10%; left: auto; right: 10px; }
             
             .nav-links { display: none; }
             .pdp-container { grid-template-columns: 1fr; gap: 40px; }
@@ -283,30 +294,30 @@
         
         <section class="hero-split">
             <div class="hero-left">
-                <span class="hero-tag animate-left delay-1">EST. 2025 • WINTER COLLECTION</span>
-                <h1 class="hero-title animate-left delay-2">Elevate Your<br>Rituals.</h1>
-                <p class="hero-desc animate-left delay-3">A curated edit of winter fashion, fine jewelry, and skincare for the modern woman who values quality over quantity.</p>
-                <div class="btn-gold animate-up delay-4" onclick="document.getElementById('shop-section').scrollIntoView()">Explore The Edit</div>
+                <span class="hero-tag animate-left delay-1">CURATED PRODUCT RECOMMENDATIONS</span>
+                <h1 class="hero-title animate-left delay-2">Curated Fashion &<br>Skincare Worth Buying.</h1>
+                <p class="hero-desc animate-left delay-3">We research, test, and recommend the best high-quality winter essentials and beauty favorites. Discover our independent picks for the modern woman.</p>
+                <div class="btn-gold animate-up delay-4" onclick="document.getElementById('shop-section').scrollIntoView()">View Top Picks</div>
+                
+                <div class="hero-disclaimer animate-up delay-4">
+                    Aurelia is reader-supported. When you buy through links on our site, we may earn an affiliate commission at no extra cost to you.
+                </div>
             </div>
 
             <div class="hero-right">
-                <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2000" class="hero-main-img animate-in">
+                <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=2000" class="hero-main-img animate-in">
                 
                 <div class="float-card fc-1 animate-scale delay-2" onclick="filterCat('Fashion')">
                     <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=400" class="fc-img">
                     <div class="fc-title">Fashion</div>
+                    <span class="fc-sub">Curated Style Picks</span>
                     <span class="fc-link">View Collection &rarr;</span>
                 </div>
 
-                <div class="float-card fc-2 animate-scale delay-3" onclick="filterCat('Accessories')">
-                    <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=400" class="fc-img">
-                    <div class="fc-title">Jewelry</div>
-                    <span class="fc-link">View Gems &rarr;</span>
-                </div>
-
-                <div class="float-card fc-3 animate-scale delay-4" onclick="filterCat('Beauty')">
+                <div class="float-card fc-2 animate-scale delay-3" onclick="filterCat('Beauty')">
                     <img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?q=80&w=400" class="fc-img">
                     <div class="fc-title">Skincare</div>
+                    <span class="fc-sub">Tested & Recommended</span>
                     <span class="fc-link">View Rituals &rarr;</span>
                 </div>
             </div>
@@ -372,7 +383,7 @@
     </footer>
 
     <script>
-        /* --- 1. PRODUCT DATA --- */
+        /* --- 1. PRODUCT DATA (EXACTLY AS PROVIDED) --- */
         const products = [
             // --- FASHION (Slots 1-6) ---
             {
