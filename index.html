@@ -44,14 +44,34 @@
         img { display: block; width: 100%; height: auto; object-fit: cover; }
         button { border: none; background: none; cursor: pointer; font-family: inherit; }
 
-        /* --- 3. ANIMATIONS (Instant Fade In - Safe) --- */
+        /* --- 3. ANIMATIONS (Intro & Scroll) --- */
+        
+        /* Intro Animations */
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes slideInLeft { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes scaleIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
 
-        .animate-in { animation: fadeIn 1s ease-out forwards; }
-        .animate-left { animation: slideInLeft 1s ease-out forwards; }
-        .animate-up { animation: fadeInUp 0.8s ease-out forwards; }
+        .animate-in { animation: fadeIn 1.2s ease-out forwards; }
+        .animate-left { opacity: 0; animation: slideInLeft 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+        .animate-scale { opacity: 0; animation: scaleIn 0.8s ease-out forwards; }
+        .animate-up { opacity: 0; animation: fadeInUp 0.8s ease-out forwards; }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+
+        /* SCROLL TRIGGER CLASSES (Used by JS) */
+        .card-hidden {
+            opacity: 0;
+            transform: translateY(60px); /* Start 60px down */
+            transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .card-visible {
+            opacity: 1;
+            transform: translateY(0); /* Slide to normal position */
+        }
 
         /* --- 4. HEADER --- */
         header {
@@ -150,21 +170,20 @@
         
         .product-card { cursor: pointer; position: relative; }
         
-        /* --- THE PROFESSIONAL FIX: SEAMLESS WHITE STUDIO --- */
+        /* --- IMAGE WRAPPER (Seamless White Studio + 4:5 + Centered) --- */
         .p-img-wrap { 
             aspect-ratio: 4/5; 
             overflow: hidden; margin-bottom: 20px; 
-            background: #FFFFFF; /* Pure white matches JPEG backgrounds */
+            background: #FFFFFF; /* Pure White to blend with JPGs */
             position: relative; 
-            border: 1px solid var(--border); /* Subtle border to define the card */
+            border: 1px solid var(--border); /* Subtle definition */
             display: flex; align-items: center; justify-content: center;
-            padding: 10px; /* Minimal padding for max size */
+            padding: 10px; /* Minimized padding */
         }
         
         .p-img { 
             width: 100%; height: 100%; 
-            object-fit: contain; /* Full visibility */
-            /* No blend mode, just pure clean placement */
+            object-fit: contain; /* No cropping */
         }
 
         .p-info { display: flex; justify-content: space-between; align-items: flex-start; }
@@ -269,23 +288,24 @@
 
     <header>
         <div class="logo animate-in" onclick="renderHome()" style="cursor: pointer;">AURELIA.</div>
-        <nav class="nav-links animate-in">
+        <nav class="nav-links animate-in delay-2">
             <a class="nav-link" onclick="filterCat('Fashion')">The Wardrobe</a>
             <a class="nav-link" onclick="filterCat('Accessories')">Jewelry Box</a>
             <a class="nav-link" onclick="filterCat('Beauty')">Vanity</a>
         </nav>
-        <div class="animate-in" style="color:var(--accent); font-size:18px;"><i class="fa-solid fa-magnifying-glass"></i></div>
+        <div class="animate-in delay-2" style="color:var(--accent); font-size:18px;"><i class="fa-solid fa-magnifying-glass"></i></div>
     </header>
 
     <div id="view-home" class="active">
         
         <section class="hero-split">
             <div class="hero-left">
-                <span class="hero-tag animate-left">CURATED PRODUCT RECOMMENDATIONS</span>
-                <h1 class="hero-title animate-left">Curated Fashion &<br>Skincare Worth Buying.</h1>
-                <p class="hero-desc animate-left">We research, test, and recommend the best high-quality winter essentials and beauty favorites. Discover our independent picks for the modern woman.</p>
-                <div class="btn-gold animate-up" onclick="document.getElementById('shop-section').scrollIntoView()">View Top Picks</div>
-                <div class="hero-disclaimer animate-up">
+                <span class="hero-tag animate-left delay-1">CURATED PRODUCT RECOMMENDATIONS</span>
+                <h1 class="hero-title animate-left delay-2">Curated Fashion &<br>Skincare Worth Buying.</h1>
+                <p class="hero-desc animate-left delay-3">We research, test, and recommend the best high-quality winter essentials and beauty favorites. Discover our independent picks for the modern woman.</p>
+                <div class="btn-gold animate-up delay-4" onclick="document.getElementById('shop-section').scrollIntoView()">View Top Picks</div>
+                
+                <div class="hero-disclaimer animate-up delay-4">
                     Aurelia is reader-supported. When you buy through links on our site, we may earn an affiliate commission at no extra cost to you.
                 </div>
             </div>
@@ -293,14 +313,14 @@
             <div class="hero-right">
                 <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=2000" class="hero-main-img animate-in">
                 
-                <div class="float-card fc-1 animate-up" onclick="filterCat('Fashion')">
+                <div class="float-card fc-1 animate-scale delay-2" onclick="filterCat('Fashion')">
                     <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=400" class="fc-img">
                     <div class="fc-title">Fashion</div>
                     <span class="fc-sub">Curated Style Picks</span>
                     <span class="fc-link">View Collection &rarr;</span>
                 </div>
 
-                <div class="float-card fc-2 animate-up" onclick="filterCat('Beauty')">
+                <div class="float-card fc-2 animate-scale delay-3" onclick="filterCat('Beauty')">
                     <img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?q=80&w=400" class="fc-img">
                     <div class="fc-title">Skincare</div>
                     <span class="fc-sub">Tested & Recommended</span>
@@ -704,16 +724,17 @@
 
         // --- 2. LOGIC ---
         
-        // FAILSAFE ANIMATION OBSERVER
+        // INTERSECTION OBSERVER FOR SCROLL ANIMATIONS
+        // Monitors if elements are in the viewport
         const observerOptions = {
-            threshold: 0.1
+            threshold: 0.1 // Trigger when 10% of element is visible
         };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('reveal-visible');
-                    observer.unobserve(entry.target);
+                    entry.target.classList.add('card-visible');
+                    observer.unobserve(entry.target); // Stop watching after animation
                 }
             });
         }, observerOptions);
@@ -726,8 +747,12 @@
             
             items.forEach((p, index) => {
                 const el = document.createElement('div');
-                el.className = 'product-card reveal-on-scroll'; // Start hidden
-                el.style.transitionDelay = `${(index % 3) * 100}ms`; // Stagger animation
+                
+                // Add the 'card-hidden' class initially
+                el.className = 'product-card card-hidden'; 
+                
+                // Add staggered delay for nice effect (modulo 3 for row behavior)
+                el.style.transitionDelay = `${(index % 3) * 100}ms`;
 
                 el.onclick = () => renderPDP(p.id);
                 
@@ -746,13 +771,8 @@
                     </div>
                 `;
                 grid.appendChild(el);
-                observer.observe(el); // Animate when visible
+                observer.observe(el); // Start watching this element
             });
-            
-            // Failsafe: Make sure they appear even if observer fails
-            setTimeout(() => {
-                document.querySelectorAll('.product-card').forEach(c => c.classList.add('reveal-visible'));
-            }, 500); 
         }
 
         function renderPDP(id) {
