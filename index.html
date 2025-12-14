@@ -185,6 +185,23 @@
         
         .product-card:hover .p-img { transform: scale(1.03); }
 
+        /* --- SPECIAL FIX FOR 4 JEWELRY PRODUCTS (Items 9, 10, 11, 12) --- */
+        /* This makes the images smaller inside the frame so they are not cut off */
+        .product-card:nth-of-type(9) .p-img-wrap,
+        .product-card:nth-of-type(10) .p-img-wrap,
+        .product-card:nth-of-type(11) .p-img-wrap,
+        .product-card:nth-of-type(12) .p-img-wrap {
+            padding: 45px !important; /* Adds whitespace around the jewelry */
+        }
+
+        .product-card:nth-of-type(9) .p-img,
+        .product-card:nth-of-type(10) .p-img,
+        .product-card:nth-of-type(11) .p-img,
+        .product-card:nth-of-type(12) .p-img {
+            object-fit: contain !important; /* Ensures the whole item is visible */
+            transform: none !important; /* Disables zoom on these specific items */
+        }
+
         .p-info { display: flex; justify-content: space-between; align-items: flex-start; }
         .p-text { flex: 1; padding-right: 10px; }
         .p-brand { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-light); margin-bottom: 5px; }
@@ -413,9 +430,9 @@
     </footer>
 
     <script>
-        /* --- 1. PRODUCT DATA (18 Items - CORRECT IMAGES RESTORED) --- */
+        /* --- 1. PRODUCT DATA (USER PROVIDED LIST) --- */
         const products = [
-             // --- FASHION (Slots 1-6) ---
+            // --- FASHION (Slots 1-6) ---
             {
                 id: 1, 
                 cat: 'Fashion',
@@ -942,4 +959,3 @@
     </script>
 </body>
 </html>
-
