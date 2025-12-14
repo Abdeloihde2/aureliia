@@ -44,34 +44,34 @@
         img { display: block; width: 100%; height: auto; object-fit: cover; }
         button { border: none; background: none; cursor: pointer; font-family: inherit; }
 
-        /* --- 3. ANIMATIONS (NEW) --- */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes slideInLeft {
-            from { opacity: 0; transform: translateX(-50px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        @keyframes scaleIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
+        /* --- 3. ANIMATIONS --- */
+        
+        /* Intro Animations (Hero) */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideInLeft { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes scaleIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-        .animate-up { opacity: 0; animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
         .animate-in { opacity: 0; animation: fadeIn 1.2s ease-out forwards; }
         .animate-left { opacity: 0; animation: slideInLeft 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
         .animate-scale { opacity: 0; animation: scaleIn 0.8s ease-out forwards; }
+        .animate-up { opacity: 0; animation: fadeInUp 0.8s ease-out forwards; }
 
-        /* Delays for Staggering */
         .delay-1 { animation-delay: 0.2s; }
         .delay-2 { animation-delay: 0.4s; }
         .delay-3 { animation-delay: 0.6s; }
         .delay-4 { animation-delay: 0.8s; }
+
+        /* SCROLL TRIGGER CLASSES (Used by JS) */
+        .card-hidden {
+            opacity: 0;
+            transform: translateY(60px); /* Start lower */
+            transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .card-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
         /* --- 4. HEADER --- */
         header {
@@ -156,8 +156,7 @@
 
         .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 40px 20px; }
         
-        /* Animation applied via JS */
-        .product-card { cursor: pointer; opacity: 0; /* Hidden initially for animation */ }
+        .product-card { cursor: pointer; position: relative; }
         
         .p-img-wrap { 
             aspect-ratio: 3/4; overflow: hidden; margin-bottom: 20px; 
@@ -165,7 +164,6 @@
             display: flex; align-items: center; justify-content: center; padding: 20px;
         }
         
-        /* FIX: Removed mix-blend-mode so images are fully visible */
         .p-img { width: 100%; height: 100%; object-fit: contain; transition: transform 0.6s; }
         .product-card:hover .p-img { transform: scale(1.05); }
 
@@ -206,10 +204,8 @@
             background: #fff; border: 1px solid var(--border); aspect-ratio: 3/4; 
             display: flex; align-items: center; justify-content: center; margin-bottom: 20px;
         }
-        /* FIX: Removed blend mode */
         .pdp-main-img { width: 90%; height: 90%; object-fit: contain; }
         
-        /* FIX: Wrap thumbnails */
         .pdp-thumbs { display: flex; gap: 10px; flex-wrap: wrap; }
         .thumb { 
             width: 70px; height: 70px; border: 1px solid var(--border); background: #fff; 
@@ -376,7 +372,7 @@
     </footer>
 
     <script>
-        /* --- 1. PRODUCT DATA (PRESERVED) --- */
+        /* --- 1. PRODUCT DATA --- */
         const products = [
             // --- FASHION (Slots 1-6) ---
             {
@@ -710,6 +706,21 @@
         ];
 
         // --- 2. LOGIC ---
+        
+        // INTERSECTION OBSERVER FOR SCROLL ANIMATIONS
+        const observerOptions = {
+            threshold: 0.1 // Trigger when 10% of element is visible
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('card-visible');
+                    observer.unobserve(entry.target); // Stop watching after animation
+                }
+            });
+        }, observerOptions);
+
         function renderGrid(filter = 'All') {
             const grid = document.getElementById('product-grid');
             grid.innerHTML = '';
@@ -718,9 +729,11 @@
             
             items.forEach((p, index) => {
                 const el = document.createElement('div');
-                el.className = 'product-card animate-up'; // Add base animation class
-                el.style.animationDelay = `${index * 0.05}s`; // Stagger animation
+                el.className = 'product-card card-hidden'; // Initial hidden state
                 
+                // Add staggered delay for nice effect (modulo 3 for row behavior)
+                el.style.transitionDelay = `${(index % 3) * 100}ms`;
+
                 el.onclick = () => renderPDP(p.id);
                 
                 // Use first image
@@ -738,6 +751,7 @@
                     </div>
                 `;
                 grid.appendChild(el);
+                observer.observe(el); // Start watching this element
             });
         }
 
