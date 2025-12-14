@@ -288,10 +288,11 @@
             .nav-links { display: none; }
             .pdp-container { grid-template-columns: 1fr; gap: 40px; }
 
-            /* FIX FOR USER: DISABLE STICKY IMAGE ON MOBILE */
+            /* FIX: DISABLE STICKY IMAGE ON MOBILE SO IT DOESN'T BLOCK TEXT */
             .pdp-left { 
-                position: relative; /* No longer sticky */
+                position: relative; 
                 top: auto; 
+                height: auto;
                 margin-bottom: 20px;
             }
 
