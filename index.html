@@ -6,29 +6,37 @@
     <title>Aurelia - Curated Fashion</title>
     <style>
         /* --- RESET & BASE STYLES --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
-            font-family: 'Georgia', 'Times New Roman', serif;
+            font-family: 'Georgia', 'Times New Roman', serif; /* Matching the elegant serif look */
             background-color: #13322B; /* Deep Hunter Green */
             color: #ffffff;
             line-height: 1.5;
-            overflow-x: hidden;
+            overflow-x: hidden; /* Prevents horizontal scroll */
         }
 
         /* --- NAVIGATION BAR --- */
         nav {
-            position: absolute;
-            top: 0; left: 0; width: 100%;
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 24px;
+            position: absolute; /* Keeps logo at the top over the background */
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px; /* Space around the logo */
             z-index: 10;
         }
 
         .logo {
             font-family: 'Times New Roman', serif;
-            color: #D4AF37; /* Gold */
-            font-size: 1.5rem;
+            color: #D4AF37; /* Gold/Mustard color */
+            font-size: 1.25rem; /* approx 20px */
             font-weight: bold;
             letter-spacing: 1px;
             text-transform: uppercase;
@@ -41,9 +49,9 @@
             text-decoration: none;
         }
 
-        /* --- HERO SECTION --- */
+        /* --- HERO SECTION (Text Area) --- */
         .hero-container {
-            /* Fixes the text overlap issue */
+            /* THIS IS THE FIX: Padding top creates space for the logo */
             padding: 140px 24px 40px 24px; 
             max-width: 800px;
             margin: 0 auto;
@@ -51,33 +59,33 @@
 
         h1 {
             font-family: 'Times New Roman', serif;
-            font-size: 3.5rem;
-            font-weight: 400;
+            font-size: 3.5rem; /* Large headline size */
+            font-weight: 400; /* Regular weight looks more elegant */
             line-height: 1.1;
             margin-bottom: 24px;
         }
 
+        /* The stylistic '&' symbol */
         .ampersand {
             display: block;
             font-style: italic;
-            font-size: 2rem;
             margin: 5px 0;
         }
 
         p.subtext {
-            font-family: 'Helvetica', 'Arial', sans-serif;
+            font-family: 'Helvetica', 'Arial', sans-serif; /* Sans-serif for readability */
             font-size: 1.1rem;
-            color: #cbd5e1;
+            color: #cbd5e1; /* Light grey for contrast */
             margin-bottom: 40px;
             max-width: 600px;
             line-height: 1.6;
         }
 
-        /* --- BUTTON (CTA) --- */
+        /* --- BUTTON --- */
         .cta-btn {
             display: inline-block;
-            background-color: #D4AF37;
-            color: #13322B;
+            background-color: #D4AF37; /* Gold background */
+            color: #13322B; /* Dark green text */
             padding: 16px 32px;
             font-family: 'Helvetica', 'Arial', sans-serif;
             font-weight: bold;
@@ -88,80 +96,54 @@
             border: none;
             cursor: pointer;
             margin-bottom: 60px;
-            /* Animation for button */
-            transition: transform 0.2s, opacity 0.2s;
-        }
-        
-        .cta-btn:hover { 
-            opacity: 0.9; 
-            transform: scale(1.02);
         }
 
-        /* --- DISCLAIMER --- */
+        /* --- DISCLAIMER TEXT --- */
         .disclaimer {
             font-family: 'Helvetica', 'Arial', sans-serif;
-            font-size: 0.75rem;
-            color: #8da399;
+            font-size: 0.75rem; /* Small text */
+            color: #8da399; /* Muted green-grey */
             border-top: 1px solid rgba(255,255,255,0.1);
             padding-top: 16px;
             margin-bottom: 40px;
         }
 
-        /* --- PRODUCTS / IMAGE GRID --- */
+        /* --- IMAGE GRID PLACEHOLDERS (Keeping layout intact) --- */
         .image-section {
             display: grid;
-            /* Forces 2 columns regardless of screen width to prevent "huge" images */
-            grid-template-columns: 1fr 1fr; 
+            grid-template-columns: 1fr 1fr; /* Two columns */
             gap: 20px;
             padding: 0 24px 60px;
-            max-width: 1000px; /* Prevents it from getting too wide on desktop */
-            margin: 0 auto;
         }
         
-        /* The Card Container */
-        .product-card {
+        .img-card {
             background-color: #ffffff;
-            padding: 10px; /* White border frame */
-            text-align: left;
-            /* ANIMATION: Keeps the float effect you asked for */
-            transition: transform 0.3s ease;
-        }
-
-        .product-card:hover {
-            transform: translateY(-8px); /* Moves up when hovered */
+            padding: 10px; /* White frame effect */
         }
         
-        /* Clickable Link Wrapper */
-        .product-link {
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-
-        .product-card img {
+        .img-card img {
             width: 100%;
             height: auto;
             display: block;
-            margin-bottom: 10px;
-            aspect-ratio: 3/4; /* Forces rectangle shape so they match */
-            object-fit: cover;
         }
 
         .category-title {
             color: #13322B;
             font-family: 'Times New Roman', serif;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
+            margin-top: 10px;
             font-weight: bold;
-            margin-top: 5px;
         }
 
         /* --- MOBILE ADJUSTMENTS --- */
         @media (max-width: 600px) {
-            h1 { font-size: 2.8rem; }
-            .hero-container { padding-top: 120px; }
-            /* On mobile, we keep them side-by-side or stack? 
-               I'll keep them stacked on very small screens to avoid them being too tiny */
-            .image-section { grid-template-columns: 1fr; }
+            h1 {
+                font-size: 2.8rem; /* Slightly smaller on phones */
+            }
+            .hero-container {
+                /* Ensure enough space on mobile too */
+                padding-top: 120px; 
+            }
         }
     </style>
 </head>
@@ -184,7 +166,7 @@
             We research, test, and recommend the best high-quality winter essentials and beauty favorites. Discover our independent picks for the modern woman.
         </p>
 
-        <a href="YOUR_LINK_HERE" class="cta-btn" target="_blank" rel="noopener noreferrer">VIEW TOP PICKS</a>
+        <a href="#" class="cta-btn">View Top Picks</a>
 
         <div class="disclaimer">
             Aurelia is reader-supported. When you buy through links on our site, we may earn an affiliate commission at no extra cost to you.
@@ -192,21 +174,14 @@
     </div>
 
     <div class="image-section">
-        
-        <div class="product-card">
-            <a href="YOUR_FASHION_LINK_HERE" class="product-link" target="_blank" rel="noopener noreferrer">
-                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80" alt="Fashion Girl in Yellow">
-                <div class="category-title">Fashion</div>
-            </a>
+        <div class="img-card">
+            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500&auto=format&fit=crop&q=60" alt="Fashion">
+            <div class="category-title">Fashion</div>
         </div>
 
-        <div class="product-card">
-            <a href="YOUR_SKINCARE_LINK_HERE" class="product-link" target="_blank" rel="noopener noreferrer">
-                <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=600&q=80" alt="Skincare Product">
-                <div class="category-title">Skincare</div>
-            </a>
-        </div>
-
+        <div class="img-card">
+             <img src="https://images.unsplash.com/photo-1556228578-8c89e6fb8f97?w=500&auto=format&fit=crop&q=60" alt="Skincare">
+            </div>
     </div>
 
 </body>
