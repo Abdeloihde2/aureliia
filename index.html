@@ -22,11 +22,10 @@
             --text-white: #FFFFFF; /* Pure White */
             --text-off-white: #E0E0E0;
             --accent: #D4AF37; /* Gold */
-            --border: rgba(26, 60, 52, 0.08); /* Softer Border */
+            --border: #E5E5E5; /* Light Grey Frame Border */
             --font-head: 'Playfair Display', serif;
             --font-body: 'Inter', sans-serif;
             --container: 1300px; 
-            --radius: 2px;
         }
 
         /* --- 2. RESET --- */
@@ -44,7 +43,7 @@
         img { display: block; width: 100%; height: auto; object-fit: cover; }
         button { border: none; background: none; cursor: pointer; font-family: inherit; }
 
-        /* --- 3. ANIMATIONS (Intro & Scroll) --- */
+        /* --- 3. ANIMATIONS --- */
         
         /* Intro Animations */
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -62,15 +61,15 @@
         .delay-3 { animation-delay: 0.6s; }
         .delay-4 { animation-delay: 0.8s; }
 
-        /* SCROLL TRIGGER CLASSES (Used by JS) */
+        /* SCROLL TRIGGER CLASSES */
         .card-hidden {
             opacity: 0;
-            transform: translateY(60px); /* Start 60px down */
+            transform: translateY(60px); 
             transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
         .card-visible {
             opacity: 1;
-            transform: translateY(0); /* Slide to normal position */
+            transform: translateY(0);
         }
 
         /* --- 4. HEADER --- */
@@ -170,21 +169,29 @@
         
         .product-card { cursor: pointer; position: relative; }
         
-        /* --- IMAGE WRAPPER (Seamless White Studio + 4:5 + Centered) --- */
+        /* --- STANDARDIZED IMAGE FRAME --- */
         .p-img-wrap { 
-            aspect-ratio: 4/5; 
-            overflow: hidden; margin-bottom: 20px; 
-            background: #FFFFFF; /* Pure White to blend with JPGs */
+            aspect-ratio: 4/5; /* The Frame */
+            width: 100%;
+            overflow: hidden; 
+            margin-bottom: 20px; 
+            background: #FFFFFF; /* White background to blend with product JPGs */
             position: relative; 
-            border: 1px solid var(--border); /* Subtle definition */
-            display: flex; align-items: center; justify-content: center;
-            padding: 10px; /* Minimized padding */
+            border: 1px solid #E5E5E5; /* Subtle border to define the frame */
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            padding: 25px; /* Clean spacing around product */
         }
         
         .p-img { 
-            width: 100%; height: 100%; 
-            object-fit: contain; /* No cropping */
+            width: 100%; 
+            height: 100%; 
+            object-fit: contain; /* Shows full product, no cropping */
+            transition: transform 0.6s ease;
         }
+        
+        .product-card:hover .p-img { transform: scale(1.03); }
 
         .p-info { display: flex; justify-content: space-between; align-items: flex-start; }
         .p-text { flex: 1; }
@@ -219,14 +226,14 @@
         
         .pdp-left { position: sticky; top: 40px; height: fit-content; }
         .pdp-main-box { 
-            background: #fff; border: 1px solid var(--border); aspect-ratio: 3/4; 
-            display: flex; align-items: center; justify-content: center; margin-bottom: 20px;
+            background: #fff; border: 1px solid #E5E5E5; aspect-ratio: 4/5; 
+            display: flex; align-items: center; justify-content: center; margin-bottom: 20px; padding: 20px;
         }
-        .pdp-main-img { width: 90%; height: 90%; object-fit: contain; }
+        .pdp-main-img { width: 100%; height: 100%; object-fit: contain; }
         
         .pdp-thumbs { display: flex; gap: 10px; flex-wrap: wrap; }
         .thumb { 
-            width: 70px; height: 70px; border: 1px solid var(--border); background: #fff; 
+            width: 70px; height: 70px; border: 1px solid #E5E5E5; background: #fff; 
             cursor: pointer; object-fit: contain; padding: 5px; opacity: 0.6; transition: 0.2s;
         }
         .thumb.active, .thumb:hover { opacity: 1; border-color: var(--text-main); }
@@ -245,7 +252,7 @@
         .icon-item { display: flex; align-items: center; gap: 10px; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-main); }
         .icon-item i { color: var(--accent); }
 
-        .editor-note { background: #fff; padding: 30px; border: 1px solid var(--border); margin-bottom: 30px; }
+        .editor-note { background: #fff; padding: 30px; border: 1px solid #E5E5E5; margin-bottom: 30px; }
         .note-title { font-family: var(--font-head); font-size: 20px; margin-bottom: 15px; color: var(--text-main); }
         .note-text { font-size: 14px; line-height: 1.7; color: var(--text-light); margin-bottom: 20px; }
         .note-bullets li { list-style: none; display: flex; gap: 10px; font-size: 14px; margin-bottom: 10px; color: var(--text-main); }
@@ -724,17 +731,16 @@
 
         // --- 2. LOGIC ---
         
-        // INTERSECTION OBSERVER FOR SCROLL ANIMATIONS
-        // Monitors if elements are in the viewport
+        // FAILSAFE ANIMATION OBSERVER
         const observerOptions = {
-            threshold: 0.1 // Trigger when 10% of element is visible
+            threshold: 0.1
         };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('card-visible');
-                    observer.unobserve(entry.target); // Stop watching after animation
+                    observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
@@ -747,16 +753,11 @@
             
             items.forEach((p, index) => {
                 const el = document.createElement('div');
-                
-                // Add the 'card-hidden' class initially
-                el.className = 'product-card card-hidden'; 
-                
-                // Add staggered delay for nice effect (modulo 3 for row behavior)
+                el.className = 'product-card card-hidden'; // Start hidden
                 el.style.transitionDelay = `${(index % 3) * 100}ms`;
 
                 el.onclick = () => renderPDP(p.id);
                 
-                // Use first image
                 const mainImg = p.gallery && p.gallery.length > 0 ? p.gallery[0] : '';
                 
                 el.innerHTML = `
@@ -771,8 +772,13 @@
                     </div>
                 `;
                 grid.appendChild(el);
-                observer.observe(el); // Start watching this element
+                observer.observe(el); 
             });
+            
+            // Failsafe: Force visible if scroll script lags
+            setTimeout(() => {
+                document.querySelectorAll('.product-card').forEach(c => c.classList.add('card-visible'));
+            }, 1000); 
         }
 
         function renderPDP(id) {
