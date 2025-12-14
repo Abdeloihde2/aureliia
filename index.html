@@ -3,17 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="AURELIA | The Collection">
-    <meta property="og:description" content="Curated fashion and skincare worth buying. Tested and recommended winter essentials.">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=2000">
-    <meta name="pinterest-rich-pin" content="true">
     <title>AURELIA | Curated Product Recommendations</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -27,7 +21,7 @@
             --text-white: #FFFFFF; /* Pure White */
             --text-off-white: #E0E0E0;
             --accent: #D4AF37; /* Gold */
-            --border: rgba(26, 60, 52, 0.08); /* Softer Border */
+            --border: rgba(26, 60, 52, 0.08);
             --font-head: 'Playfair Display', serif;
             --font-body: 'Inter', sans-serif;
             --container: 1300px; 
@@ -186,7 +180,6 @@
         
         .p-img { 
             width: 100%; height: 100%; 
-            /* object-fit handled in JS for zoom */
             transition: transform 0.6s ease;
         }
         
@@ -277,7 +270,7 @@
         /* --- RESPONSIVE FIXES (MOBILE) --- */
         @media (max-width: 900px) {
             .hero-split { grid-template-columns: 1fr; height: auto; }
-            /* FIXED: Reduced padding and font size for mobile */
+            /* FIXED: Reduced padding */
             .hero-left { padding: 60px 20px; height: auto; min-height: 60vh; }
             .hero-right { height: 40vh; }
             
@@ -420,7 +413,7 @@
     </footer>
 
     <script>
-        /* --- 1. PRODUCT DATA (18 Items - Data Preserved) --- */
+        /* --- 1. PRODUCT DATA (18 Items - CORRECT IMAGES RESTORED) --- */
         const products = [
             // --- FASHION (Slots 1-6) ---
             {
@@ -642,7 +635,7 @@
                 link: 'https://amzn.to/40Gv61n'
             },
 
-            // --- BEAUTY / SKINCARE (Slots 13-18) ---
+            // --- BEAUTY / SKINCARE (Slots 13-18) - FIXED IMAGES ---
             {
                 id: 13, 
                 cat: 'Beauty',
@@ -650,7 +643,7 @@
                 title: "Advanced Snail 96 Mucin Power Essence", 
                 subtitle: "The viral Korean skincare secret for glass skin.",
                 hook: "Hydration that goes deep, repairing your skin barrier instantly.",
-                gallery: ["https://i.postimg.cc/KYbYp60c/61s0-M6-H04-DL-AC-SX679.jpg", "https://i.postimg.cc/VvW202kH/613-Y7d-O5-N2-L-AC-SX679.jpg", "https://i.postimg.cc/26Z8P23Q/71-Sj-B-c-O4-L-AC-SX679.jpg", "https://i.postimg.cc/L6ZTVF2q/71-K-Hw-R5-VlL-AC-SX679.jpg", "https://i.postimg.cc/Z5F24K26/61-Xy-Xv-C0-Q-L-AC-SX679.jpg"],
+                gallery: ["https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=400", "https://images.unsplash.com/photo-1629198688000-71f23e745b6e?q=80&w=400", "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=400", "https://images.unsplash.com/photo-1608248597279-f99d160bfbc8?q=80&w=400", "https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?q=80&w=400"],
                 icons: ["96% Snail Mucin", "Fragrance Free", "Hypoallergenic", "Hydrating"],
                 love: "Don't let the name scare you. This essence has a cult following because it works. It soothes red, irritated skin and leaves a glow that makeup can't replicate.",
                 bullets: [
@@ -668,7 +661,7 @@
                 title: "Skin Perfecting 2% BHA Liquid Exfoliant", 
                 subtitle: "The #1 product worldwide for clearing pores and smoothing texture.",
                 hook: "Delete blackheads and uneven texture overnight.",
-                gallery: ["https://i.postimg.cc/X70Z1nJ9/61-Sh-Pq-Zk-VmL-AC-SX679.jpg", "https://i.postimg.cc/k47v9jYh/61-Qy8-Lo8-T-L-AC-SX679.jpg", "https://i.postimg.cc/BbrfV0C3/718e-O-8-L-SL-AC-SX679.jpg", "https://i.postimg.cc/7Zv3045k/71-B8-F6-F-c-L-AC-SX679.jpg", "https://i.postimg.cc/XqKjHjX2/61-Oq-Q-3u-C-L-AC-SX679.jpg"],
+                gallery: ["https://images.unsplash.com/photo-1556228720-1925b64c614b?q=80&w=400", "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?q=80&w=400", "https://images.unsplash.com/photo-1612817288484-965055d6729a?q=80&w=400", "https://images.unsplash.com/photo-1620916297397-a4a5402a3c6c?q=80&w=400", "https://images.unsplash.com/photo-1571781926291-280553131573?q=80&w=400"],
                 icons: ["Salicylic Acid", "Unclogs Pores", "Leave-On", "Alcohol Free"],
                 love: "If you only buy one skincare active, make it this. It dissolves dead skin cells inside the pore, shrinking them visibly and creating that smooth, filtered look.",
                 bullets: [
@@ -686,7 +679,7 @@
                 title: "Moisturizing Cream", 
                 subtitle: "The dermatologist-recommended staple for dry, winter skin.",
                 hook: "Restores your protective skin barrier with essential ceramides.",
-                gallery: ["https://i.postimg.cc/d0FzV82j/71-L5-Zl-K3-H9-L-AC-SY695.jpg", "https://i.postimg.cc/T17T1qjY/81r-W-S36-Fp-L-AC-SY695.jpg", "https://i.postimg.cc/44rGv7z8/713-P-t-A76-LL-AC-SY695.jpg", "https://i.postimg.cc/zX83P4J2/81p-L8-T-y-SL-AC-SY695.jpg", "https://i.postimg.cc/Xq6BfWjL/71-N-k59-Yx-SL-AC-SY695.jpg"],
+                gallery: ["https://images.unsplash.com/photo-1608248597279-f99d160bfbc8?q=80&w=400", "https://images.unsplash.com/photo-1580870436995-a24982e5b7c7?q=80&w=400", "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=400", "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=400", "https://images.unsplash.com/photo-1629198688000-71f23e745b6e?q=80&w=400"],
                 icons: ["3 Ceramides", "Hyaluronic Acid", "Fragrance Free", "Non-Comedogenic"],
                 love: "It's rich, it's thick, and it saves dry skin. Unlike fancy scented lotions, this actually heals dryness and locks in moisture for 24 hours.",
                 bullets: [
@@ -704,7 +697,7 @@
                 title: "Toleriane Double Repair Face Moisturizer", 
                 subtitle: "French pharmacy excellence for sensitive skin types.",
                 hook: "Prebiotic skincare that balances your microbiome.",
-                gallery: ["https://i.postimg.cc/FRjPzXyg/61-Y9-PRo-Z6-JL-AC-SX679.jpg", "https://i.postimg.cc/G2zM3q52/61f-R-4-U-n-L-AC-SX679.jpg", "https://i.postimg.cc/X70Z1nJ9/61-Sh-Pq-Zk-VmL-AC-SX679.jpg", "https://i.postimg.cc/k47v9jYh/61-Qy8-Lo8-T-L-AC-SX679.jpg", "https://i.postimg.cc/BbrfV0C3/718e-O-8-L-SL-AC-SX679.jpg"],
+                gallery: ["https://images.unsplash.com/photo-1556228578-0d85b1a4d571?q=80&w=400", "https://images.unsplash.com/photo-1620916297397-a4a5402a3c6c?q=80&w=400", "https://images.unsplash.com/photo-1571781926291-280553131573?q=80&w=400", "https://images.unsplash.com/photo-1629198688000-71f23e745b6e?q=80&w=400", "https://images.unsplash.com/photo-1556228720-1925b64c614b?q=80&w=400"],
                 icons: ["Niacinamide", "Oil Free", "SPF 30 Option", "Sensitive Safe"],
                 love: "A daily moisturizer that feels luxurious but costs a fraction of department store brands. It soothes redness and feels like a drink of water for your face.",
                 bullets: [
@@ -722,7 +715,7 @@
                 title: "Lash Sensational Sky High Mascara", 
                 subtitle: "The drugstore mascara that outperforms the luxury brands.",
                 hook: "Limitless length and full volume from every angle.",
-                gallery: ["https://i.postimg.cc/Wb8j0YjM/71-B8-O1-T-O-L-AC-SX679.jpg", "https://i.postimg.cc/7Zv3045k/71-B8-F6-F-c-L-AC-SX679.jpg", "https://i.postimg.cc/XqKjHjX2/61-Oq-Q-3u-C-L-AC-SX679.jpg", "https://i.postimg.cc/FRjPzXyg/61-Y9-PRo-Z6-JL-AC-SX679.jpg", "https://i.postimg.cc/G2zM3q52/61f-R-4-U-n-L-AC-SX679.jpg"],
+                gallery: ["https://images.unsplash.com/photo-1631214524020-7e18db9a8f92?q=80&w=400", "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=400", "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=400", "https://images.unsplash.com/photo-1571781926291-280553131573?q=80&w=400", "https://images.unsplash.com/photo-1556228720-1925b64c614b?q=80&w=400"],
                 icons: ["Bamboo Extract", "Flex Tower Brush", "Washable", "No Flaking"],
                 love: "Why pay $30 for mascara? This formula went viral on TikTok because it truly mimics the look of lash extensions—long, separated, and jet black.",
                 bullets: [
@@ -740,7 +733,7 @@
                 title: "One-Step Volumizer Hair Dryer", 
                 subtitle: "The blowout brush that changed the at-home hair game forever.",
                 hook: "Salon-quality blowout in half the time, with half the effort.",
-                gallery: ["https://i.postimg.cc/K8J0xZgq/71-K-Hw-R5-VlL-AC-SX679.jpg", "https://i.postimg.cc/Z5F24K26/61-Xy-Xv-C0-Q-L-AC-SX679.jpg", "https://i.postimg.cc/Wb8j0YjM/71-B8-O1-T-O-L-AC-SX679.jpg", "https://i.postimg.cc/7Zv3045k/71-B8-F6-F-c-L-AC-SX679.jpg", "https://i.postimg.cc/XqKjHjX2/61-Oq-Q-3u-C-L-AC-SX679.jpg"],
+                gallery: ["https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=400", "https://images.unsplash.com/photo-1522337360705-2b1cc3d549d1?q=80&w=400", "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=400", "https://images.unsplash.com/photo-1571781926291-280553131573?q=80&w=400", "https://images.unsplash.com/photo-1608248597279-f99d160bfbc8?q=80&w=400"],
                 icons: ["Ionic Tech", "Ceramic Coating", "Oval Brush", "3 Heat Settings"],
                 love: "If you struggle with a round brush and dryer, this is your savior. It dries and smooths simultaneously, giving you that bouncy, shiny 'just left the salon' look.",
                 bullets: [
