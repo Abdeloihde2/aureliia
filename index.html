@@ -45,8 +45,6 @@
         button { border: none; background: none; cursor: pointer; font-family: inherit; }
 
         /* --- 3. ANIMATIONS --- */
-        
-        /* Intro Animations */
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes slideInLeft { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
@@ -168,13 +166,13 @@
 
         .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 50px 30px; }
         
-        .product-card { cursor: pointer; position: relative; }
+        .product-card { cursor: pointer; position: relative; display: flex; flex-direction: column;}
         
         /* STANDARDIZED IMAGE WRAPPER */
         .p-img-wrap { 
             aspect-ratio: 4/5; 
             overflow: hidden; margin-bottom: 20px; 
-            background: #FFFFFF; /* Pure White */
+            background: #FFFFFF; 
             position: relative; 
             border: 1px solid var(--border); 
             display: flex; align-items: center; justify-content: center;
@@ -183,24 +181,24 @@
         
         .p-img { 
             width: 100%; height: 100%; 
-            /* object-fit logic handled in JS for specific zoom */
+            /* object-fit handled in JS for zoom */
             transition: transform 0.6s ease;
         }
         
         .product-card:hover .p-img { transform: scale(1.03); }
 
         .p-info { display: flex; justify-content: space-between; align-items: flex-start; }
-        .p-text { flex: 1; }
+        .p-text { flex: 1; padding-right: 10px; }
         .p-brand { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-light); margin-bottom: 5px; }
-        .p-title { font-family: var(--font-head); font-size: 18px; margin-bottom: 5px; color: var(--text-main); }
+        .p-title { font-family: var(--font-head); font-size: 18px; margin-bottom: 5px; color: var(--text-main); line-height: 1.2; }
         .p-rating { font-size: 11px; color: var(--accent); }
         
-        .p-arrow { 
-            width: 30px; height: 30px; border: 1px solid var(--text-main); border-radius: 50%; 
-            display: flex; align-items: center; justify-content: center; font-size: 12px; 
-            transition: 0.3s; margin-left: 10px;
+        .p-btn { 
+            background: transparent; border: 1px solid var(--text-main); 
+            padding: 8px 15px; font-size: 10px; text-transform: uppercase; letter-spacing: 1px;
+            transition: 0.3s; white-space: nowrap;
         }
-        .product-card:hover .p-arrow { background: var(--text-main); color: #fff; }
+        .product-card:hover .p-btn { background: var(--text-main); color: #fff; }
 
         /* --- 7. PRODUCT PAGE --- */
         #view-home, #view-product { display: none; opacity: 0; transition: opacity 0.5s ease; }
@@ -269,7 +267,7 @@
         .footer-logo { font-family: var(--font-head); font-size: 30px; margin-bottom: 20px; }
         .footer-text { opacity: 0.6; font-size: 12px; max-width: 500px; margin: 0 auto; line-height: 1.6; }
 
-        /* --- RESPONSIVE --- */
+        /* --- RESPONSIVE FIXES (MOBILE) --- */
         @media (max-width: 900px) {
             .hero-split { grid-template-columns: 1fr; height: auto; }
             .hero-left { padding: 80px 30px; height: 65vh; }
@@ -284,6 +282,18 @@
             .pdp-container { grid-template-columns: 1fr; gap: 40px; }
             .logo { color: var(--accent); }
             header { padding: 20px; }
+            
+            /* PINTEREST STYLE 2-COLUMN GRID FOR MOBILE */
+            .product-grid { 
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 15px; 
+            }
+            .section { padding: 60px 20px; }
+            .section-header { margin-bottom: 40px; flex-direction: column; align-items: flex-start; gap: 10px; }
+            .p-title { font-size: 14px; }
+            .p-btn { padding: 10px; width: 100%; text-align: center; }
+            .p-info { flex-direction: column; gap: 10px; }
+            .p-text { padding: 0; }
         }
     </style>
 </head>
@@ -488,8 +498,8 @@
                 id: 6, 
                 cat: 'Fashion',
                 brand: 'Trendy Queen',
-                title: "Soft-Touch Thermal Turtleneck", 
-                subtitle: "Sophisticated hands, even in freezing temperatures.",
+                title: "Mock Neck Thermal Top", 
+                subtitle: "The foundational layer your winter wardrobe has been missing.",
                 hook: "A second-skin thermal that looks chic on its own or layered under blazers.",
                 gallery: ["https://i.postimg.cc/BQm203yx/Gemini-Generated-Image-wxviklwxviklwxvi.png", "https://i.postimg.cc/pd4Ztv9x/61286Sn-Ia7L-AC-SY741.jpg", "https://i.postimg.cc/RhQQfnX8/61n1r9Em-Jq-L-AC-SY741.jpg", "https://i.postimg.cc/02PCvcN1/71MRe-UE-BYL-AC-SY741.jpg", "https://i.postimg.cc/4xFvzGQn/71-4n-QOb00L-AC-SY741.jpg"],
                 icons: ["Buttery Soft", "4-Way Stretch", "Thermal Warmth", "Breathable"],
@@ -726,17 +736,16 @@
 
         // --- 2. LOGIC ---
         
-        // INTERSECTION OBSERVER FOR SCROLL ANIMATIONS
-        // Monitors if elements are in the viewport
+        // FAILSAFE ANIMATION OBSERVER
         const observerOptions = {
-            threshold: 0.1 // Trigger when 10% of element is visible
+            threshold: 0.1
         };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('card-visible');
-                    observer.unobserve(entry.target); // Stop watching after animation
+                    observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
@@ -749,11 +758,7 @@
             
             items.forEach((p, index) => {
                 const el = document.createElement('div');
-                
-                // Add the 'card-hidden' class initially
-                el.className = 'product-card card-hidden'; 
-                
-                // Add staggered delay for nice effect (modulo 3 for row behavior)
+                el.className = 'product-card card-hidden'; // Start hidden
                 el.style.transitionDelay = `${(index % 3) * 100}ms`;
 
                 el.onclick = () => renderPDP(p.id);
@@ -761,13 +766,11 @@
                 // Use first image
                 const mainImg = p.gallery && p.gallery.length > 0 ? p.gallery[0] : '';
                 
-                // SMART ZOOM LOGIC:
-                // Only zoom fashion items (1-4).
-                // Use 'contain' for everything else to show full packaging/bottles.
+                // SMART ZOOM LOGIC
                 const isZoomed = [1, 2, 3, 4].includes(p.id);
                 const imgStyle = isZoomed 
-                    ? 'object-fit: cover; object-position: top;' // Zoom fashion
-                    : 'object-fit: contain;'; // Fit bottles/boxes
+                    ? 'object-fit: cover; object-position: top;' 
+                    : 'object-fit: contain;'; 
                 
                 el.innerHTML = `
                     <div class="p-img-wrap">
@@ -777,16 +780,15 @@
                         <div class="p-text">
                             <div class="p-brand">${p.brand}</div>
                             <h3 class="p-title">${p.title}</h3>
-                            <div class="p-rating"><i class="fa-solid fa-star"></i> ${p.rating || '4.8'}</div>
+                            <div class="p-btn">View Details</div>
                         </div>
-                        <div class="p-arrow"><i class="fa-solid fa-arrow-right"></i></div>
                     </div>
                 `;
                 grid.appendChild(el);
-                observer.observe(el); // Start watching this element
+                observer.observe(el); 
             });
             
-            // Failsafe: Ensure visible even if JS is slow
+            // Failsafe
             setTimeout(() => {
                 document.querySelectorAll('.product-card').forEach(c => c.classList.add('card-visible'));
             }, 1000); 
