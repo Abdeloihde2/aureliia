@@ -138,8 +138,9 @@
             background: #fff; position: relative; border: 1px solid var(--border);
             display: flex; align-items: center; justify-content: center; padding: 20px;
         }
-        /* FIXED: object-fit: contain to prevent cropping */
-        .p-img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; transition: transform 0.6s; }
+        
+        /* FIX: Removed mix-blend-mode so images are fully visible */
+        .p-img { width: 100%; height: 100%; object-fit: contain; transition: transform 0.6s; }
         .product-card:hover .p-img { transform: scale(1.05); }
 
         .p-info { display: flex; justify-content: space-between; align-items: flex-start; }
@@ -161,7 +162,7 @@
 
         .pdp-wrapper { padding-top: 80px; min-height: 100vh; background: var(--bg-body); }
         
-        /* NEW BACK BUTTON BAR */
+        /* BACK BUTTON */
         .back-bar { 
             max-width: 1300px; margin: 0 auto; padding: 0 40px; margin-bottom: 20px;
         }
@@ -179,12 +180,13 @@
             background: #fff; border: 1px solid var(--border); aspect-ratio: 3/4; 
             display: flex; align-items: center; justify-content: center; margin-bottom: 20px;
         }
-        /* FIXED: object-fit: contain */
-        .pdp-main-img { width: 90%; height: 90%; object-fit: contain; mix-blend-mode: multiply; }
+        /* FIX: Removed blend mode so all photo types work */
+        .pdp-main-img { width: 90%; height: 90%; object-fit: contain; }
         
-        .pdp-thumbs { display: flex; gap: 15px; }
+        /* FIX: Added wrap so thumbnails don't disappear on small screens */
+        .pdp-thumbs { display: flex; gap: 10px; flex-wrap: wrap; }
         .thumb { 
-            width: 80px; height: 80px; border: 1px solid var(--border); background: #fff; 
+            width: 70px; height: 70px; border: 1px solid var(--border); background: #fff; 
             cursor: pointer; object-fit: contain; padding: 5px; opacity: 0.6; transition: 0.2s;
         }
         .thumb.active, .thumb:hover { opacity: 1; border-color: var(--text-main); }
@@ -348,7 +350,7 @@
     </footer>
 
     <script>
-        /* --- 1. PRODUCT DATA (18 SLOTS - FILLED FROM YOUR UPLOADED FILE) --- */
+        /* --- 1. PRODUCT DATA (YOUR DATA PRESERVED) --- */
         const products = [
             // --- FASHION (Slots 1-6) ---
             {
@@ -367,7 +369,6 @@
                     "Storm Ready: Resistant to wind and snow for all-weather protection."
                 ],
                 colors: ["Black", "Cream", "Navy"],
-                tip: "Pair with leggings and chunky boots for an effortless après-ski look.",
                 link: 'https://amzn.to/4pYvhTf'
             },
             {
@@ -386,7 +387,6 @@
                     "Versatile: Matte finish looks great with sweaters or under dresses."
                 ],
                 colors: ["Black", "Charcoal", "Olive"],
-                tip: "Wear under your favorite jeans on extra cold days for invisible warmth.",
                 link: 'https://amzn.to/44lFUHy'
             },
             {
@@ -405,7 +405,6 @@
                     "Layering Hero: Roomy enough to wear over collared shirts or turtlenecks."
                 ],
                 colors: ["Cream", "Grey", "Camel"],
-                tip: "French tuck into high-waisted trousers for a polished office look.",
                 link: 'https://amzn.to/48ySsOo'
             },
             {
@@ -424,7 +423,6 @@
                     "Cozy Lining: Fully lined with faux fur for all-day warmth."
                 ],
                 colors: ["Tan", "Black", "Brown"],
-                tip: "Style with thick wool socks peeking out the top for a cozy vibe.",
                 link: 'https://amzn.to/4aaGD27'
             },
             {
@@ -443,14 +441,13 @@
                     "Giftable: A universal size that makes a perfect stocking stuffer."
                 ],
                 colors: ["Beige", "Black", "Rust"],
-                tip: "Pull down slightly over your ears for maximum warmth on windy days.",
                 link: 'https://amzn.to/48Wi1Ie'
             },
             {
                 id: 6, 
                 cat: 'Fashion',
                 brand: 'Trendy Queen',
-                title: "SThe foundational layer your winter wardrobe has been missing.", 
+                title: "Soft-Touch Thermal Turtleneck", 
                 subtitle: "Sophisticated hands, even in freezing temperatures.",
                 hook: "A second-skin thermal that looks chic on its own or layered under blazers.",
                 gallery: ["https://i.postimg.cc/BQm203yx/Gemini-Generated-Image-wxviklwxviklwxvi.png", "https://i.postimg.cc/pd4Ztv9x/61286Sn-Ia7L-AC-SY741.jpg", "https://i.postimg.cc/RhQQfnX8/61n1r9Em-Jq-L-AC-SY741.jpg", "https://i.postimg.cc/02PCvcN1/71MRe-UE-BYL-AC-SY741.jpg", "https://i.postimg.cc/4xFvzGQn/71-4n-QOb00L-AC-SY741.jpg"],
@@ -462,7 +459,6 @@
                     "Layering Hero: Smooth enough to wear under itchy wool sweaters as a protective barrier."
                 ],
                 colors: ["Coffee", "Black", "Apricot", "White"],
-                tip: "Style under an oversized blazer with gold hoops for an effortless 90s aesthetic",
                 link: 'https://amzn.to/3MuCrAl'
             },
 
@@ -483,7 +479,6 @@
                     "Timeless Design: A classic solitaire pendant never goes out of style."
                 ],
                 colors: ["Silver", "Rose Gold", "Gold"],
-                tip: "Layer with a shorter choker chain for a trendy stacked look.",
                 link: 'https://amzn.to/3YnF3mc'
             },
             {
@@ -502,7 +497,6 @@
                     "Skin Safe: Hypoallergenic posts for sensitive ears."
                 ],
                 colors: ["Gold", "Silver"],
-                tip: "Wear with a slicked-back bun to let the gold shine.",
                 link: 'https://amzn.to/4q7Btsr'
             },
             {
@@ -521,7 +515,6 @@
                     "Elegant Size: Not too big, not too small—just right."
                 ],
                 colors: ["Clear/Silver", "Clear/Gold"],
-                tip: "The quintessential 'second piercing' earring if you have multiple holes.",
                 link: 'https://amzn.to/48vVva2'
             },
             {
@@ -540,7 +533,6 @@
                     "Sentimental Gift: The perfect base for a lifetime collection."
                 ],
                 colors: ["Silver", "RED", "Gold"],
-                tip: "Start with 1-3 charms to keep it minimal and modern.",
                 link: 'https://amzn.to/48T0T64'
             },
             {
@@ -559,7 +551,6 @@
                     "Comfort Fit: Thin bands feel weightless on the fingers."
                 ],
                 colors: ["Gold", "Silver", "Mixed"],
-                tip: "Mix metals (gold and silver) for a very on-trend modern look.",
                 link: 'https://amzn.to/493QjKC'
             },
             {
@@ -578,7 +569,6 @@
                     "Bridal Ready: Perfect for weddings or formal events."
                 ],
                 colors: ["White/Gold", "White/Silver"],
-                tip: "Wear with an off-the-shoulder top to highlight your neck and the earrings.",
                 link: 'https://amzn.to/3KPeR0B'
             },
 
@@ -599,7 +589,6 @@
                     "Sensitive Safe: Free from fragrance and harsh irritants."
                 ],
                 colors: ["Unscented"],
-                tip: "Apply to slightly damp skin to lock in maximum moisture.",
                 link: 'https://amzn.to/4oO5GeM'
             },
             {
@@ -618,7 +607,6 @@
                     "Lightweight: No heavy, sticky feeling or sunscreen smell."
                 ],
                 colors: ["Invisible"],
-                tip: "Don't forget your neck and the back of your hands!",
                 link: 'https://amzn.to/4adk5he'
             },
             {
@@ -637,7 +625,6 @@
                     "Gradual Release: Formulated to minimize irritation."
                 ],
                 colors: ["Serum"],
-                tip: "Start using 2-3 times a week and always wear SPF the next morning.",
                 link: 'https://amzn.to/4pGh7qs'
             },
             {
@@ -656,7 +643,6 @@
                     "Creamy Texture: Feels luxurious and gentle to massage in."
                 ],
                 colors: ["Unscented"],
-                tip: "Massage for a full 60 seconds to truly break down impurities.",
                 link: 'https://amzn.to/44VBpDL'
             },
             {
@@ -675,7 +661,6 @@
                     "Cooling Effect: Instantly reduces redness and heat."
                 ],
                 colors: ["Various"],
-                tip: "Keep them in the fridge for an extra de-puffing effect.",
                 link: 'https://amzn.to/4rPbNlM'
             },
             {
@@ -694,7 +679,6 @@
                     "Daily Wear: Clear formula works alone or over lipstick."
                 ],
                 colors: ["Clear"],
-                tip: "Reapply often when you are outdoors or swimming.",
                 link: 'https://amzn.to/4oKY2Sr'
             }
         ];
@@ -708,20 +692,21 @@
             
             items.forEach(p => {
                 const el = document.createElement('div');
-                el.className = 'product-card fade-in-up';
+                el.className = 'product-card';
                 el.onclick = () => renderPDP(p.id);
-                // First image from gallery or placeholder
-                const mainImg = (p.gallery && p.gallery.length > 0 && !p.gallery[0].includes('PASTE')) 
-                                ? p.gallery[0] 
-                                : 'https://placehold.co/400x500/EFEFEF/999?text=Add+Image'; 
+                
+                // Use first image
+                const mainImg = p.gallery && p.gallery.length > 0 ? p.gallery[0] : '';
                 
                 el.innerHTML = `
                     <div class="p-img-wrap"><img src="${mainImg}" class="p-img"></div>
                     <div class="p-info">
-                        <div class="p-brand">${p.brand.includes('PASTE') ? 'Brand' : p.brand}</div>
-                        <h3 class="p-title">${p.title.includes('PASTE') ? 'Available Spot' : p.title}</h3>
-                        <div class="p-rating-sm"><i class="fa-solid fa-star"></i> ${p.rating}</div>
-                        <div class="p-btn">View Details</div>
+                        <div class="p-text">
+                            <div class="p-brand">${p.brand}</div>
+                            <h3 class="p-title">${p.title}</h3>
+                            <div class="p-rating"><i class="fa-solid fa-star"></i> ${p.rating || '4.8'}</div>
+                        </div>
+                        <div class="p-arrow"><i class="fa-solid fa-arrow-right"></i></div>
                     </div>
                 `;
                 grid.appendChild(el);
@@ -741,24 +726,22 @@
             document.getElementById('pdp-subtitle').innerText = p.subtitle;
             document.getElementById('pdp-hook').innerText = p.hook;
             document.getElementById('pdp-love').innerText = p.love;
-            document.getElementById('pdp-tip').innerHTML = `<strong>Style Tip:</strong> ${p.tip}`;
             document.getElementById('pdp-link').href = p.link;
             
             // Fill Bullets
             document.getElementById('pdp-bullets').innerHTML = p.bullets.map(b => `<li><i class="fa-solid fa-check"></i> ${b}</li>`).join('');
 
             // Fill Icons
-            document.getElementById('pdp-icons').innerHTML = p.icons.map(i => `<div class="feature-item"><i class="fa-solid fa-star"></i> ${i}</div>`).join('');
+            document.getElementById('pdp-icons').innerHTML = p.icons ? p.icons.map(i => `<div class="icon-item"><i class="fa-solid fa-star"></i> ${i}</div>`).join('') : '';
 
             // Fill Colors
-            document.getElementById('pdp-colors').innerHTML = p.colors.map(c => `<div class="swatch">${c}</div>`).join('');
+            document.getElementById('pdp-colors').innerHTML = p.colors ? p.colors.map(c => `<div class="swatch">${c}</div>`).join('') : '';
 
             // Fill Gallery
             const mainImg = document.getElementById('pdp-main-img');
-            const thumbs = document.getElementById('pdp-thumbnails');
+            const thumbs = document.getElementById('pdp-thumbs');
             
-            // Check if gallery has valid images
-            if(p.gallery && p.gallery.length > 0 && !p.gallery[0].includes('PASTE')) {
+            if(p.gallery && p.gallery.length > 0) {
                 mainImg.src = p.gallery[0];
                 thumbs.innerHTML = '';
                 p.gallery.forEach((src, idx) => {
@@ -772,10 +755,6 @@
                     };
                     thumbs.appendChild(t);
                 });
-            } else {
-                // Placeholder
-                mainImg.src = 'https://placehold.co/400x500/EFEFEF/999?text=Add+Image';
-                thumbs.innerHTML = '';
             }
         }
 
@@ -788,7 +767,7 @@
         function filterCat(cat) {
             renderHome();
             renderGrid(cat);
-            document.getElementById('edit-section').scrollIntoView();
+            document.getElementById('shop-section').scrollIntoView();
         }
 
         // Init
