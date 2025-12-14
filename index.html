@@ -28,7 +28,7 @@
         .logo {
             font-family: 'Times New Roman', serif;
             color: #D4AF37; /* Gold */
-            font-size: 1.25rem;
+            font-size: 1.5rem;
             font-weight: bold;
             letter-spacing: 1px;
             text-transform: uppercase;
@@ -43,7 +43,7 @@
 
         /* --- HERO SECTION --- */
         .hero-container {
-            /* FIXED: Padding prevents text from hiding behind logo */
+            /* Fixes the text overlap issue */
             padding: 140px 24px 40px 24px; 
             max-width: 800px;
             margin: 0 auto;
@@ -60,6 +60,7 @@
         .ampersand {
             display: block;
             font-style: italic;
+            font-size: 2rem;
             margin: 5px 0;
         }
 
@@ -87,9 +88,14 @@
             border: none;
             cursor: pointer;
             margin-bottom: 60px;
-            transition: opacity 0.3s;
+            /* Animation for button */
+            transition: transform 0.2s, opacity 0.2s;
         }
-        .cta-btn:hover { opacity: 0.9; }
+        
+        .cta-btn:hover { 
+            opacity: 0.9; 
+            transform: scale(1.02);
+        }
 
         /* --- DISCLAIMER --- */
         .disclaimer {
@@ -104,26 +110,28 @@
         /* --- PRODUCTS / IMAGE GRID --- */
         .image-section {
             display: grid;
-            grid-template-columns: 1fr 1fr; /* Two columns side by side */
+            /* Forces 2 columns regardless of screen width to prevent "huge" images */
+            grid-template-columns: 1fr 1fr; 
             gap: 20px;
             padding: 0 24px 60px;
-            max-width: 1000px; /* Constraints width on large screens */
+            max-width: 1000px; /* Prevents it from getting too wide on desktop */
             margin: 0 auto;
         }
         
         /* The Card Container */
         .product-card {
-            background-color: #ffffff; /* White frame */
-            padding: 12px; 
+            background-color: #ffffff;
+            padding: 10px; /* White border frame */
             text-align: left;
-            transition: transform 0.2s;
+            /* ANIMATION: Keeps the float effect you asked for */
+            transition: transform 0.3s ease;
         }
 
         .product-card:hover {
-            transform: translateY(-5px); /* Slight lift on hover */
+            transform: translateY(-8px); /* Moves up when hovered */
         }
         
-        /* Clickable area for the image */
+        /* Clickable Link Wrapper */
         .product-link {
             text-decoration: none;
             color: inherit;
@@ -135,24 +143,25 @@
             height: auto;
             display: block;
             margin-bottom: 10px;
-            aspect-ratio: 3/4; /* Ensures consistent vertical rectangle shape */
+            aspect-ratio: 3/4; /* Forces rectangle shape so they match */
             object-fit: cover;
         }
 
         .category-title {
             color: #13322B;
             font-family: 'Times New Roman', serif;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: bold;
+            margin-top: 5px;
         }
 
         /* --- MOBILE ADJUSTMENTS --- */
         @media (max-width: 600px) {
             h1 { font-size: 2.8rem; }
             .hero-container { padding-top: 120px; }
-            /* On very small screens, stack images vertically? 
-               Remove below line if you want them side-by-side always */
-            /* .image-section { grid-template-columns: 1fr; } */
+            /* On mobile, we keep them side-by-side or stack? 
+               I'll keep them stacked on very small screens to avoid them being too tiny */
+            .image-section { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -175,7 +184,7 @@
             We research, test, and recommend the best high-quality winter essentials and beauty favorites. Discover our independent picks for the modern woman.
         </p>
 
-        <a href="#" class="cta-btn" target="_blank" rel="noopener noreferrer">View Top Picks</a>
+        <a href="YOUR_LINK_HERE" class="cta-btn" target="_blank" rel="noopener noreferrer">VIEW TOP PICKS</a>
 
         <div class="disclaimer">
             Aurelia is reader-supported. When you buy through links on our site, we may earn an affiliate commission at no extra cost to you.
@@ -186,15 +195,16 @@
         
         <div class="product-card">
             <a href="YOUR_FASHION_LINK_HERE" class="product-link" target="_blank" rel="noopener noreferrer">
-                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500&auto=format&fit=crop&q=60" alt="Fashion Girl in Yellow">
+                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80" alt="Fashion Girl in Yellow">
                 <div class="category-title">Fashion</div>
             </a>
         </div>
 
         <div class="product-card">
             <a href="YOUR_SKINCARE_LINK_HERE" class="product-link" target="_blank" rel="noopener noreferrer">
-                <img src="https://images.unsplash.com/photo-1556228578-8c89e6fb8f97?w=500&auto=format&fit=crop&q=60" alt="Skincare Product">
-                </a>
+                <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=600&q=80" alt="Skincare Product">
+                <div class="category-title">Skincare</div>
+            </a>
         </div>
 
     </div>
