@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="AURELIA | The Collection">
+    <meta property="og:description" content="Curated fashion and skincare worth buying. Tested and recommended winter essentials.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=2000">
+    <meta name="pinterest-rich-pin" content="true">
     <title>AURELIA | Curated Product Recommendations</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -218,7 +223,9 @@
 
         .pdp-container { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; max-width: 1300px; margin: 0 auto; padding: 0 40px 100px; }
         
+        /* DESKTOP: Sticky Image (stays while you scroll text) */
         .pdp-left { position: sticky; top: 40px; height: fit-content; }
+        
         .pdp-main-box { 
             background: #fff; border: 1px solid var(--border); aspect-ratio: 3/4; 
             display: flex; align-items: center; justify-content: center; margin-bottom: 20px;
@@ -280,6 +287,14 @@
             
             .nav-links { display: none; }
             .pdp-container { grid-template-columns: 1fr; gap: 40px; }
+
+            /* FIX FOR USER: DISABLE STICKY IMAGE ON MOBILE */
+            .pdp-left { 
+                position: relative; /* No longer sticky */
+                top: auto; 
+                margin-bottom: 20px;
+            }
+
             .logo { color: var(--accent); }
             header { padding: 20px; }
             
