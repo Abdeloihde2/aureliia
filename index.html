@@ -3,872 +3,180 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="AURELIA | The Collection">
-    <meta property="og:description" content="Curated fashion and skincare worth buying. Tested and recommended winter essentials.">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=2000">
-    <meta name="pinterest-rich-pin" content="true">
-    <title>AURELIA | Curated Product Recommendations</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    <title>Aurelia - Curated Picks</title>
     <style>
-        /* --- 1. THE "FOREST & GOLD" PALETTE --- */
-        :root {
-            --bg-body: #F2EFE9; /* Warm Beige */
-            --bg-dark: #1A3C34; /* Deep Forest Green */
-            --bg-card: #FFFFFF;
-            --text-main: #1A3C34; /* Dark Green Text */
-            --text-light: #5C6B66; /* Muted Green-Grey */
-            --text-white: #FFFFFF; /* Pure White */
-            --text-off-white: #E0E0E0;
-            --accent: #D4AF37; /* Gold */
-            --border: rgba(26, 60, 52, 0.08); /* Softer Border */
-            --font-head: 'Playfair Display', serif;
-            --font-body: 'Inter', sans-serif;
-            --container: 1300px; 
-            --radius: 2px;
-        }
-
-        /* --- 2. RESET --- */
+        /* --- RESET & BASIC STYLES --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+
         body {
-            font-family: var(--font-body);
-            background-color: var(--bg-body);
-            color: var(--text-main);
-            overflow-x: hidden;
+            font-family: 'Times New Roman', serif;
+            background-color: #13322B; /* Dark Green */
+            color: #ffffff;
+            text-align: center; /* Centers everything */
+            padding-bottom: 50px;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+        }
+        .logo {
+            color: #D4AF37; /* Gold */
+            font-size: 1.5rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .search-icon { font-size: 1.2rem; cursor: pointer; }
+
+        /* --- HERO TEXT --- */
+        .hero {
+            padding: 60px 20px 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .ampersand {
+            font-style: italic;
+            font-family: serif;
+            display: block;
+            font-size: 2rem;
+            margin: 5px 0;
+        }
+        p {
+            font-family: 'Arial', sans-serif;
+            font-size: 1rem;
+            color: #cbd5e1;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- BUTTON --- */
+        .btn {
+            display: inline-block;
+            background-color: #D4AF37; /* Gold */
+            color: #13322B;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            margin-bottom: 50px;
+            transition: opacity 0.3s;
+        }
+        .btn:hover { opacity: 0.9; }
+
+        /* --- DISCLAIMER --- */
+        .disclaimer {
+            font-family: 'Arial', sans-serif;
+            font-size: 0.7rem;
+            color: #8da399;
+            margin-bottom: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            display: inline-block;
+            max-width: 600px;
+        }
+
+        /* --- IMAGE GRID (The Fix) --- */
+        .grid-container {
+            display: grid;
+            /* This FORCES two equal columns. They cannot get huge. */
+            grid-template-columns: 1fr 1fr; 
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .product-card {
+            background: #fff;
+            padding: 10px;
+            text-align: left;
+            transition: transform 0.3s ease;
+        }
+        .product-card:hover { transform: translateY(-5px); }
+
+        .product-card img {
             width: 100%;
+            height: 400px; /* Forces images to be the same height */
+            object-fit: cover; /* Crops image neatly to fit */
+            display: block;
+            margin-bottom: 10px;
         }
 
-        a { text-decoration: none; color: inherit; transition: 0.3s; cursor: pointer; }
-        img { display: block; width: 100%; height: auto; object-fit: cover; }
-        button { border: none; background: none; cursor: pointer; font-family: inherit; }
-
-        /* --- 3. ANIMATIONS --- */
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes slideInLeft { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes scaleIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
-
-        .animate-in { animation: fadeIn 1.2s ease-out forwards; }
-        .animate-left { opacity: 0; animation: slideInLeft 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
-        .animate-scale { opacity: 0; animation: scaleIn 0.8s ease-out forwards; }
-        .animate-up { opacity: 0; animation: fadeInUp 0.8s ease-out forwards; }
-
-        .delay-1 { animation-delay: 0.2s; }
-        .delay-2 { animation-delay: 0.4s; }
-        .delay-3 { animation-delay: 0.6s; }
-        .delay-4 { animation-delay: 0.8s; }
-
-        /* SCROLL TRIGGER CLASSES */
-        .card-hidden {
-            opacity: 0;
-            transform: translateY(60px); 
-            transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-        .card-visible {
-            opacity: 1;
-            transform: translateY(0); 
+        .cat-title {
+            color: #13322B;
+            font-weight: bold;
+            font-size: 1.2rem;
+            padding-left: 5px;
         }
 
-        /* --- 4. HEADER --- */
-        header {
-            position: absolute; top: 0; left: 0; width: 100%; padding: 30px 60px;
-            display: flex; justify-content: space-between; align-items: center;
-            z-index: 1000;
-        }
-        .logo { font-family: var(--font-head); font-size: 28px; font-weight: 700; letter-spacing: 1px; color: var(--text-white); }
-        
-        .nav-links { display: flex; gap: 50px; }
-        .nav-link { font-size: 12px; font-weight: 500; color: var(--text-white); text-transform: uppercase; letter-spacing: 2px; opacity: 0.9; transition: 0.3s; }
-        .nav-link:hover { opacity: 1; color: var(--accent); }
-
-        /* --- 5. HERO SECTION --- */
-        .hero-split {
-            display: grid; grid-template-columns: 50% 50%;
-            height: 100vh; width: 100%; position: relative; overflow: hidden;
-        }
-
-        .hero-left {
-            background-color: var(--bg-dark);
-            padding: 100px 80px;
-            display: flex; flex-direction: column; justify-content: center;
-            color: var(--text-white);
-            position: relative; z-index: 2;
-        }
-        
-        .hero-tag {
-            font-size: 11px; letter-spacing: 3px; text-transform: uppercase; 
-            color: var(--accent); margin-bottom: 25px; font-weight: 600;
-            border-left: 1px solid var(--accent); padding-left: 15px;
-        }
-        
-        .hero-title {
-            font-family: var(--font-head); font-size: 64px; line-height: 1.1; 
-            margin-bottom: 35px; font-weight: 400; color: var(--text-white);
-        }
-        
-        .hero-desc {
-            font-size: 16px; line-height: 1.7; color: var(--text-off-white); 
-            max-width: 480px; margin-bottom: 50px; font-weight: 300;
-        }
-        
-        .btn-gold {
-            background: var(--accent); color: var(--bg-dark); padding: 20px 45px;
-            font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 700;
-            display: inline-block; width: fit-content; transition: 0.3s; border: 1px solid var(--accent);
-            border-radius: 2px;
-        }
-        .btn-gold:hover { background: transparent; color: var(--accent); }
-
-        .hero-disclaimer {
-            margin-top: 25px; font-size: 10px; color: var(--text-off-white); 
-            opacity: 0.5; font-style: italic; max-width: 400px; line-height: 1.5;
-        }
-
-        .hero-right {
-            background-color: var(--bg-body);
-            position: relative;
-            display: flex; align-items: center; justify-content: center;
-        }
-        
-        .hero-main-img {
-            position: absolute; right: 0; top: 0; width: 100%; height: 100%; 
-            object-fit: cover; opacity: 1; filter: brightness(0.9);
-        }
-
-        /* Floating Cards */
-        .float-card {
-            position: absolute; background: #fff; padding: 12px; width: 220px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);
-            transition: transform 0.4s ease; cursor: pointer; z-index: 10;
-        }
-        .float-card:hover { transform: translateY(-10px); z-index: 15; }
-        
-        .fc-img { width: 100%; aspect-ratio: 1; object-fit: cover; margin-bottom: 15px; filter: grayscale(10%); }
-        .float-card:hover .fc-img { filter: grayscale(0%); }
-        
-        .fc-title { font-family: var(--font-head); font-size: 16px; margin-bottom: 4px; color: var(--text-main); font-weight: 600; }
-        .fc-sub { font-size: 10px; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; display:block; }
-        .fc-link { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); font-weight: 700; }
-
-        .fc-1 { top: 20%; left: -60px; } 
-        .fc-2 { bottom: 20%; left: 40px; }  
-
-        /* --- 6. PRODUCT GRID SECTION --- */
-        .section { padding: 120px 40px; max-width: var(--container); margin: 0 auto; }
-        .section-header { 
-            display: flex; justify-content: space-between; align-items: end; 
-            margin-bottom: 80px; border-bottom: 1px solid var(--border); padding-bottom: 30px;
-        }
-        .sh-title h2 { font-family: var(--font-head); font-size: 48px; color: var(--text-main); }
-        .sh-desc { font-size: 14px; color: var(--text-light); text-transform: uppercase; letter-spacing: 1px; }
-
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 50px 30px; }
-        
-        .product-card { cursor: pointer; position: relative; display: flex; flex-direction: column;}
-        
-        /* STANDARDIZED IMAGE WRAPPER */
-        .p-img-wrap { 
-            aspect-ratio: 4/5; 
-            overflow: hidden; margin-bottom: 20px; 
-            background: #FFFFFF; 
-            position: relative; 
-            border: 1px solid var(--border); 
-            display: flex; align-items: center; justify-content: center;
-            padding: 10px; 
-        }
-        
-        .p-img { 
-            width: 100%; height: 100%; 
-            /* object-fit handled in JS for zoom */
-            transition: transform 0.6s ease;
-        }
-        
-        .product-card:hover .p-img { transform: scale(1.03); }
-
-        .p-info { display: flex; justify-content: space-between; align-items: flex-start; }
-        .p-text { flex: 1; padding-right: 10px; }
-        .p-brand { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-light); margin-bottom: 5px; }
-        .p-title { font-family: var(--font-head); font-size: 18px; margin-bottom: 5px; color: var(--text-main); line-height: 1.2; }
-        .p-rating { font-size: 11px; color: var(--accent); }
-        
-        .p-btn { 
-            background: transparent; border: 1px solid var(--text-main); 
-            padding: 8px 15px; font-size: 10px; text-transform: uppercase; letter-spacing: 1px;
-            transition: 0.3s; white-space: nowrap;
-        }
-        .product-card:hover .p-btn { background: var(--text-main); color: #fff; }
-
-        /* --- 7. PRODUCT PAGE --- */
-        #view-home, #view-product { display: none; opacity: 0; transition: opacity 0.5s ease; }
-        #view-home.active, #view-product.active { display: block; opacity: 1; }
-
-        .pdp-wrapper { padding-top: 100px; min-height: 100vh; background: var(--bg-body); }
-        
-        .back-bar { 
-            max-width: 1300px; margin: 0 auto; padding: 0 40px; margin-bottom: 30px;
-        }
-        .back-btn { 
-            font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; 
-            color: var(--text-light); cursor: pointer; display: inline-flex; align-items: center; gap: 10px;
-            transition: 0.3s; font-weight: 600;
-        }
-        .back-btn:hover { color: var(--text-main); transform: translateX(-5px); }
-
-        .pdp-container { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; max-width: 1300px; margin: 0 auto; padding: 0 40px 100px; }
-        
-        /* DESKTOP: Sticky Image (stays while you scroll text) */
-        .pdp-left { position: sticky; top: 40px; height: fit-content; }
-        
-        .pdp-main-box { 
-            background: #fff; border: 1px solid var(--border); aspect-ratio: 3/4; 
-            display: flex; align-items: center; justify-content: center; margin-bottom: 20px;
-        }
-        .pdp-main-img { width: 90%; height: 90%; object-fit: contain; }
-        
-        .pdp-thumbs { display: flex; gap: 10px; flex-wrap: wrap; }
-        .thumb { 
-            width: 70px; height: 70px; border: 1px solid var(--border); background: #fff; 
-            cursor: pointer; object-fit: contain; padding: 5px; opacity: 0.6; transition: 0.2s;
-        }
-        .thumb.active, .thumb:hover { opacity: 1; border-color: var(--text-main); }
-
-        .pdp-info { padding-top: 10px; }
-        .pdp-cat-tag { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 15px; display: block; }
-        .pdp-title { font-family: var(--font-head); font-size: 52px; line-height: 1.1; margin-bottom: 20px; color: var(--text-main); }
-        .pdp-subtitle { font-size: 18px; font-weight: 300; color: var(--text-light); margin-bottom: 30px; border-left: 2px solid var(--accent); padding-left: 20px; }
-        
-        .hook-box { 
-            border-left: 3px solid var(--accent); padding-left: 15px; margin-bottom: 25px; 
-            font-size: 14px; font-weight: 500; color: var(--text-main);
-        }
-
-        .icon-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 40px; }
-        .icon-item { display: flex; align-items: center; gap: 10px; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-main); }
-        .icon-item i { color: var(--accent); }
-
-        .editor-note { background: #fff; padding: 30px; border: 1px solid var(--border); margin-bottom: 30px; }
-        .note-title { font-family: var(--font-head); font-size: 20px; margin-bottom: 15px; color: var(--text-main); }
-        .note-text { font-size: 14px; line-height: 1.7; color: var(--text-light); margin-bottom: 20px; }
-        .note-bullets li { list-style: none; display: flex; gap: 10px; font-size: 14px; margin-bottom: 10px; color: var(--text-main); }
-        .note-bullets i { color: var(--accent); font-size: 10px; margin-top: 6px; }
-
-        .swatch-row { display: flex; gap: 10px; margin-bottom: 40px; }
-        .swatch { border: 1px solid var(--text-main); padding: 5px 15px; font-size: 11px; text-transform: uppercase; border-radius: 20px; }
-        
-        .btn-buy { 
-            display: block; width: 100%; background: var(--text-main); color: var(--bg-body); 
-            text-align: center; padding: 22px; font-size: 13px; text-transform: uppercase; letter-spacing: 2px; 
-            font-weight: 600; transition: 0.3s;
-        }
-        .btn-buy:hover { background: var(--accent); color: var(--text-main); }
-
-        /* --- 8. FOOTER --- */
-        footer { background: var(--bg-dark); color: var(--text-white); padding: 80px 40px; text-align: center; }
-        .footer-logo { font-family: var(--font-head); font-size: 30px; margin-bottom: 20px; }
-        .footer-text { opacity: 0.6; font-size: 12px; max-width: 500px; margin: 0 auto; line-height: 1.6; }
-
-        /* --- RESPONSIVE FIXES (MOBILE) --- */
-        @media (max-width: 900px) {
-            .hero-split { grid-template-columns: 1fr; height: auto; }
-            .hero-left { padding: 80px 30px; height: 65vh; }
-            .hero-right { height: 45vh; }
-            .hero-title { font-size: 42px; }
-            
-            .float-card { width: 160px; padding: 10px; }
-            .fc-1 { top: 10%; left: 10px; }
-            .fc-2 { bottom: 10%; left: auto; right: 10px; }
-            
-            .nav-links { display: none; }
-            .pdp-container { grid-template-columns: 1fr; gap: 40px; }
-
-            /* FIX: DISABLE STICKY IMAGE ON MOBILE SO IT DOESN'T BLOCK TEXT */
-            .pdp-left { 
-                position: relative; 
-                top: auto; 
-                height: auto;
-                margin-bottom: 20px;
-            }
-
-            .logo { color: var(--accent); }
-            header { padding: 20px; }
-            
-            /* PINTEREST STYLE 2-COLUMN GRID FOR MOBILE */
-            .product-grid { 
-                grid-template-columns: repeat(2, 1fr); 
-                gap: 15px; 
-            }
-            .section { padding: 60px 20px; }
-            .section-header { margin-bottom: 40px; flex-direction: column; align-items: flex-start; gap: 10px; }
-            .p-title { font-size: 14px; }
-            .p-btn { padding: 10px; width: 100%; text-align: center; }
-            .p-info { flex-direction: column; gap: 10px; }
-            .p-text { padding: 0; }
+        /* --- MOBILE ADJUSTMENT --- */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            /* On mobile, stack them 1 on top of another */
+            .grid-container { grid-template-columns: 1fr; } 
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo animate-in" onclick="renderHome()" style="cursor: pointer;">AURELIA.</div>
-        <nav class="nav-links animate-in delay-2">
-            <a class="nav-link" onclick="filterCat('Fashion')">The Wardrobe</a>
-            <a class="nav-link" onclick="filterCat('Accessories')">Jewelry Box</a>
-            <a class="nav-link" onclick="filterCat('Beauty')">Vanity</a>
-        </nav>
-        <div class="animate-in delay-2" style="color:var(--accent); font-size:18px;"><i class="fa-solid fa-magnifying-glass"></i></div>
-    </header>
+    <nav>
+        <div class="logo">AURELIA.</div>
+        <div class="search-icon">🔍</div>
+    </nav>
 
-    <div id="view-home" class="active">
+    <div class="hero">
+        <h1>
+            Curated Fashion <br>
+            <span class="ampersand">&</span>
+            Skincare Worth <br>
+            Buying.
+        </h1>
+        <p>
+            We research, test, and recommend the best high-quality winter essentials and beauty favorites. Discover our independent picks for the modern woman.
+        </p>
+
+        <a href="YOUR_LINK_HERE" class="btn" target="_blank">VIEW TOP PICKS</a>
         
-        <section class="hero-split">
-            <div class="hero-left">
-                <span class="hero-tag animate-left delay-1">CURATED PRODUCT RECOMMENDATIONS</span>
-                <h1 class="hero-title animate-left delay-2">Curated Fashion &<br>Skincare Worth Buying.</h1>
-                <p class="hero-desc animate-left delay-3">We research, test, and recommend the best high-quality winter essentials and beauty favorites. Discover our independent picks for the modern woman.</p>
-                <div class="btn-gold animate-up delay-4" onclick="document.getElementById('shop-section').scrollIntoView()">View Top Picks</div>
-                <div class="hero-disclaimer animate-up delay-4">
-                    Aurelia is reader-supported. When you buy through links on our site, we may earn an affiliate commission at no extra cost to you.
-                </div>
-            </div>
+        <br>
 
-            <div class="hero-right">
-                <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=2000" class="hero-main-img animate-in">
-                
-                <div class="float-card fc-1 animate-scale delay-2" onclick="filterCat('Fashion')">
-                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=400" class="fc-img">
-                    <div class="fc-title">Fashion</div>
-                    <span class="fc-sub">Curated Style Picks</span>
-                    <span class="fc-link">View Collection &rarr;</span>
-                </div>
-
-                <div class="float-card fc-2 animate-scale delay-3" onclick="filterCat('Beauty')">
-                    <img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?q=80&w=400" class="fc-img">
-                    <div class="fc-title">Skincare</div>
-                    <span class="fc-sub">Tested & Recommended</span>
-                    <span class="fc-link">View Rituals &rarr;</span>
-                </div>
-            </div>
-        </section>
-
-        <section class="section" id="shop-section">
-            <div class="section-header animate-up">
-                <div class="sh-title">
-                    <h2>The Collection</h2>
-                </div>
-                <div class="sh-desc">Handpicked for You</div>
-            </div>
-            <div class="product-grid" id="product-grid">
-                </div>
-        </section>
-
-    </div>
-
-    <div id="view-product">
-        <div class="pdp-wrapper">
-            <div class="back-bar animate-in">
-                <div class="back-btn" onclick="renderHome()">
-                    <i class="fa-solid fa-arrow-left"></i> Back to Collection
-                </div>
-            </div>
-
-            <div class="pdp-container animate-up">
-                <div class="pdp-left">
-                    <div class="pdp-main-box">
-                        <img id="pdp-main-img" src="" class="pdp-main-img">
-                    </div>
-                    <div class="pdp-thumbs" id="pdp-thumbs"></div>
-                </div>
-
-                <div class="pdp-right">
-                    <span class="pdp-cat-tag" id="pdp-brand">Brand</span>
-                    <h1 class="pdp-title" id="pdp-title">Title</h1>
-                    <p class="pdp-subtitle" id="pdp-subtitle">Subtitle</p>
-                    
-                    <div class="hook-box" id="pdp-hook">Hook</div>
-
-                    <div class="icon-grid" id="pdp-icons"></div>
-
-                    <div class="editor-note">
-                        <h4 class="note-title">Why We Love It</h4>
-                        <p class="note-text" id="pdp-love">Text</p>
-                        <ul class="note-bullets" id="pdp-bullets"></ul>
-                    </div>
-
-                    <div class="swatch-row" id="pdp-colors"></div>
-
-                    <a id="pdp-link" href="#" target="_blank" class="btn-buy">View on Amazon</a>
-                    <p style="font-size:11px; margin-top:10px; text-align:center; opacity:0.6;">Secure checkout via Amazon</p>
-                </div>
-            </div>
+        <div class="disclaimer">
+            Aurelia is reader-supported. When you buy through links on our site, we may earn an affiliate commission at no extra cost to you.
         </div>
     </div>
 
-    <footer>
-        <div class="footer-logo">AURELIA.</div>
-        <p class="footer-text">Aurelia is reader-supported. When you shop through our links, we may earn an affiliate commission.</p>
-        <div style="margin-top:20px; font-size:10px;">&copy; 2025 Aurelia. All Rights Reserved.</div>
-    </footer>
-
-    <script>
-        /* --- 1. PRODUCT DATA (18 Items - Data Preserved) --- */
-        const products = [
-            // --- FASHION (Slots 1-6) ---
-            {
-                id: 1, 
-                cat: 'Fashion',
-                brand: 'MOERDENG',
-                title: "Insulated Down Puffer Jacket", 
-                subtitle: "The ultimate cozy shield against winter’s chill without the bulk.",
-                hook: "Wrap yourself in a cloud of warmth that feels like a hug.",
-                gallery: ["https://i.postimg.cc/c1nXcvvQ/Gemini-Generated-Image-jfliwjjfliwjjfli.png", "https://i.postimg.cc/VLmpkFVp/61wd0q4G8SL-AC-SY741.jpg", "https://i.postimg.cc/6qwjT9Yd/71XPa-OSIqb-L-AC-SY741.jpg", "https://i.postimg.cc/qqVcFGNB/6eb0bdbcb4a2a07863d799d54a1d0c0f.jpg", "https://i.postimg.cc/rwyBQ9CL/71WSGR0job-L-AC-SY741.jpg"],
-                icons: ["Down Insulation", "Water Resistant", "Thermal Lining", "Windproof"],
-                love: "Finally, a heavy-duty coat that doesn't make you feel like a marshmallow. Women love how the tailored fit keeps them looking polished even in a blizzard.",
-                bullets: [
-                    "Maximum Warmth: Filled with premium down insulation to lock in heat.",
-                    "Flattering Silhouette: Designed with a cinched waist to avoid looking boxy.",
-                    "Storm Ready: Resistant to wind and snow for all-weather protection."
-                ],
-                colors: ["Black", "Cream", "Navy"],
-                link: 'https://amzn.to/4pYvhTf'
-            },
-            {
-                id: 2, 
-                cat: 'Fashion',
-                brand: 'baleaf',
-                title: "Thermal Fleece-Lined Leggings", 
-                subtitle: "Your secret weapon for staying warm without sacrificing style.",
-                hook: "Look sleek on the outside, feel like you're in sweatpants on the inside.",
-                gallery: ["https://i.postimg.cc/Dfr1ZLWj/51p-ZRDXQUL-AC-SX679.jpg", "https://i.postimg.cc/W1hDMk4Y/images-q-tbn-ANd9Gc-RNB7Q7rp0Uy3Epr-Osov-R0s-KKtoqh-Z1RCj7A-s.jpg", "https://i.postimg.cc/4dTmk2QD/61N64Lm-Zlx-L-AC-UY1000.jpg", "https://i.postimg.cc/qMZqMvGK/51GN4ex-Rk-SL-AC-UY1000.jpg", "https://i.postimg.cc/PrNfckkz/71OL9u-Om-EZL-UL500.jpg"],
-                icons: ["Fleece Interior", "High Waisted", "4-Way Stretch", "Squat Proof"],
-                love: "These are a game changer for winter. The brushed fleece interior is buttery soft against the skin, making morning walks in freezing temps actually enjoyable.",
-                bullets: [
-                    "Hidden Warmth: Thick fleece lining provides insulation without adding bulk.",
-                    "Smoothing Fit: High waistband holds everything in for a flattering look.",
-                    "Versatile: Matte finish looks great with sweaters or under dresses."
-                ],
-                colors: ["Black", "Charcoal", "Olive"],
-                link: 'https://amzn.to/44lFUHy'
-            },
-            {
-                id: 3, 
-                cat: 'Fashion',
-                brand: 'Trendy Queen',
-                title: "Cable-Knit Wool Sweater", 
-                subtitle: "A timeless classic that brings cottage-core comfort to your wardrobe.",
-                hook: "The quintessential chunky knit you'll reach for every single morning.",
-                gallery: ["https://i.postimg.cc/SKwdC4fR/Gemini-Generated-Image-ec3fv6ec3fv6ec3f.png", "https://i.postimg.cc/7LqSSLpM/A968-Connemara-Green-38030-1759793282.jpg", "https://i.postimg.cc/bvFH8hB2/71BXZPOJh-GL-AC-SY741.jpg", "https://i.postimg.cc/4ypzzhNz/71q-Qt-Do4r-ML-AC-SY741.jpg", "https://i.postimg.cc/FzkTwRF0/Gemini-Generated-Image-2p8jty2p8jty2p8j.png"],
-                icons: ["Wool Blend", "Cable Texture", "Relaxed Fit", "Soft Touch"],
-                love: "There is nothing quite like the texture of a real cable knit. This sweater strikes the perfect balance between oversized comfort and structured style.",
-                bullets: [
-                    "Heritage Style: Classic cable pattern that never goes out of fashion.",
-                    "Breathable Warmth: Wool blend keeps you warm without overheating.",
-                    "Layering Hero: Roomy enough to wear over collared shirts or turtlenecks."
-                ],
-                colors: ["Cream", "Grey", "Camel"],
-                link: 'https://amzn.to/48ySsOo'
-            },
-            {
-                id: 4, 
-                cat: 'Fashion',
-                brand: 'Columbia Store',
-                title: "Waterproof Winter Boots", 
-                subtitle: "Heavy-duty protection meets sleek, urban design.",
-                hook: "Conquer slush and snow without ruining your outfit.",
-                gallery: ["https://i.postimg.cc/0QzQRgTK/Gemini-Generated-Image-f9devef9devef9de.png", "https://i.postimg.cc/0Qsm9yCS/61Bcvo-It2h-L-AC-SY695.jpg", "https://i.postimg.cc/286WkJnx/71s-IY6fza2L-AC-SY695.jpg", "https://i.postimg.cc/d1w7zSq7/610gt4l6r1L-AC-SY695.jpg", "https://i.postimg.cc/59m5NLTc/612JRQXwxc-L-AC-SY695.jpg"],
-                icons: ["100% Waterproof", "Faux Fur Lining", "Non-Slip Sole", "Thermal Rated"],
-                love: "Say goodbye to cold, wet toes. These boots are praised for their rugged durability while still looking cute enough to wear to brunch.",
-                bullets: [
-                    "Dry Feet Guaranteed: Seam-sealed construction keeps moisture out.",
-                    "Traction Control: Rubber lug soles prevent slipping on icy sidewalks.",
-                    "Cozy Lining: Fully lined with faux fur for all-day warmth."
-                ],
-                colors: ["Tan", "Black", "Brown"],
-                link: 'https://amzn.to/4aaGD27'
-            },
-            {
-                id: 5, 
-                cat: 'Fashion',
-                brand: 'FISFET',
-                title: "Merino Wool Beanie Hat Scarf Gloves ", 
-                subtitle: "The luxuriously soft accessory your winter coat is missing.",
-                hook: "Zero itch, 100% warmth, and effortless cool-girl style.",
-                gallery: ["https://i.postimg.cc/YSgnXjS5/il-570x-N-2136672973-n8m5.jpg", "https://i.postimg.cc/Gt3XhQjR/71PTEt-Ks-Yy-L-AC-SX569.jpg", "https://i.postimg.cc/HxYwQL8f/il-570x-N-3544258713-g32s.jpg", "https://i.postimg.cc/MTpBnrhw/81UMIntwm-JL-AC-SX569.jpg", "https://i.postimg.cc/PJ8PZGyy/1662167010-0340-0340.jpg"],
-                icons: ["Merino Wool", "Non-Itch", "Ribbed Knit", "Unisex Fit"],
-                love: "Unlike cheap acrylic hats, this merino wool gem regulates temperature and doesn't mess up your hair with static. It's an everyday luxury.",
-                bullets: [
-                    "Premium Fiber: Merino wool is naturally odor-resistant and breathable.",
-                    "Perfect Slouch: Designed for that effortless, slightly loose fit.",
-                    "Giftable: A universal size that makes a perfect stocking stuffer."
-                ],
-                colors: ["Beige", "Black", "Rust"],
-                link: 'https://amzn.to/48Wi1Ie'
-            },
-            {
-                id: 6, 
-                cat: 'Fashion',
-                brand: 'Trendy Queen',
-                title: "Mock Neck Thermal Top", 
-                subtitle: "The foundational layer your winter wardrobe has been missing.",
-                hook: "A second-skin thermal that looks chic on its own or layered under blazers.",
-                gallery: ["https://i.postimg.cc/BQm203yx/Gemini-Generated-Image-wxviklwxviklwxvi.png", "https://i.postimg.cc/pd4Ztv9x/61286Sn-Ia7L-AC-SY741.jpg", "https://i.postimg.cc/RhQQfnX8/61n1r9Em-Jq-L-AC-SY741.jpg", "https://i.postimg.cc/02PCvcN1/71MRe-UE-BYL-AC-SY741.jpg", "https://i.postimg.cc/4xFvzGQn/71-4n-QOb00L-AC-SY741.jpg"],
-                icons: ["Buttery Soft", "4-Way Stretch", "Thermal Warmth", "Breathable"],
-                love: "Basics shouldn't be boring. Women love this top because it feels incredibly expensive against the skin—silky, stretchy, and opaque. It provides serious warmth without the bulk of a sweater.",
-                bullets: [
-                    "The Perfect Neck: The mock neck stands up beautifully without feeling choking or tight.",
-                    "No-Bulk Tucking: The slim fit creates a seamless line when tucked into high-waisted jeans.",
-                    "Layering Hero: Smooth enough to wear under itchy wool sweaters as a protective barrier."
-                ],
-                colors: ["Coffee", "Black", "Apricot", "White"],
-                link: 'https://amzn.to/3MuCrAl'
-            },
-
-            // --- JEWELRY / ACCESSORIES (Slots 7-12) ---
-            {
-                id: 7, 
-                cat: 'Accessories',
-                brand: 'Luxe Gems',
-                title: "Sterling Silver Pendant Necklace", 
-                subtitle: "A delicate touch of sparkle for your daily neckline.",
-                hook: "The dainty everyday piece you never have to take off.",
-                gallery: ["https://i.postimg.cc/QdBmYVtQ/714a-C8l-Am-KL-AC-SY695.jpg", "https://i.postimg.cc/NMQ1t0gT/71o9Kqm-DY3L-AC-SY695.jpg", "https://i.postimg.cc/QCxkQdw1/71fp8Gfsq-NL-AC-SY695.jpg", "https://i.postimg.cc/J76bwmSD/71Vn9THc9HL-AC-SY695.jpg", "https://i.postimg.cc/PqQwSkmL/71YWOEpns-VL-AC-SY695.jpg"],
-                icons: ["Sterling Silver", "Real Gemstone", "Hypoallergenic", "Adjustable Chain"],
-                love: "Minimalist jewelry is having a moment. This pendant adds just the right amount of light-catching shimmer to a t-shirt or blouse.",
-                bullets: [
-                    "Quality Metal: 925 Sterling Silver won't turn your skin green.",
-                    "Versatile Length: Adjustable chain lets you layer with other pieces.",
-                    "Timeless Design: A classic solitaire pendant never goes out of style."
-                ],
-                colors: ["Silver", "Rose Gold", "Gold"],
-                link: 'https://amzn.to/3YnF3mc'
-            },
-            {
-                id: 8, 
-                cat: 'Accessories',
-                brand: 'Luxe Gems',
-                title: "Gold Hoop Earrings", 
-                subtitle: "The ultimate wardrobe staple that instantly elevates any outfit.",
-                hook: "Bold enough to be seen, lightweight enough to wear all day.",
-                gallery: ["https://i.postimg.cc/bwHrh9sP/images-q-tbn-ANd9Gc-RKO7t-Du-QDYjh6DJJ8LDa-Had-Zo858qfwe0JA-s.jpg", "https://i.postimg.cc/PxN51GKC/81SFI8Zv8n-L-AC-SY535.jpg", "https://i.postimg.cc/3rVZqmy2/71k-EK1LA7DL-AC-UY1000.jpg", "https://i.postimg.cc/yY00r5C1/arms-of-eve-jewellery-arms-of-eve-riley-hoop-earrings-small-gold-plated-31456921223250-1024x1024.jpg", "https://i.postimg.cc/CLCf4qby/ce925y-hera-nu-carat-london-hera-yellow-gold-vermeil-hoop-earrings-19-50-1-0095-img1.jpg"],
-                icons: ["14k Gold Plated", "Lightweight", "Secure Clasp", "Tarnish Free"],
-                love: "Every woman needs a reliable pair of hoops. These are praised for their 'hollow tube' design which gives the chunky look without the heavy ear-drag.",
-                bullets: [
-                    "Featherlight: You will forget you are even wearing them.",
-                    "Expensive Look: High-shine plating mimics solid gold perfectly.",
-                    "Skin Safe: Hypoallergenic posts for sensitive ears."
-                ],
-                colors: ["Gold", "Silver"],
-                link: 'https://amzn.to/4q7Btsr'
-            },
-            {
-                id: 9, 
-                cat: 'Accessories',
-                brand: 'Luxe Gems',
-                title: "Diamond Stud Earrings", 
-                subtitle: "Understated luxury that speaks volumes.",
-                hook: "The perfect touch of brilliance for special occasions or daily wear.",
-                gallery: ["https://i.postimg.cc/ZKF0tz74/61KAca8z-RNL-AC-SX535.jpg", "https://i.postimg.cc/ZKn18rGV/81HU0p-QGa4L-AC-UY1000.jpg", "https://i.postimg.cc/NF37rvhJ/image-vsrid-CPm-Pmdqex-IKx-JRACGAEi-JDg2OGFm-Mj-Fm-LTg2Y2Yt-NDE2MS1h-NDNj-LTZh-YWM1NGNj-Mj-Zm-OTIGIg.jpg", "https://i.postimg.cc/ncmNSHLj/81Ypm8b-ZALL-AC-SY535.jpg", "https://i.postimg.cc/yN15Ncyd/81ZZP9XDy-UL-AC-SY535.jpg"],
-                icons: ["Conflict Free", "Secure Backing", "Brilliant Cut", "Gift Boxed"],
-                love: "A classic pair of studs brings light to the face like nothing else. These simulate the fire of real diamonds at a fraction of the cost.",
-                bullets: [
-                    "Maximum Sparkle: Precision cut stones reflect light beautifully.",
-                    "Secure Fit: Sturdy backings ensure you won't lose them.",
-                    "Elegant Size: Not too big, not too small—just right."
-                ],
-                colors: ["Clear/Silver", "Clear/Gold"],
-                link: 'https://amzn.to/48vVva2'
-            },
-            {
-                id: 10, 
-                cat: 'Accessories',
-                brand: 'Luxe Gems',
-                title: "Charm Bracelet", 
-                subtitle: "A personalized piece that tells your unique story.",
-                hook: "Collect memories on your wrist with this elegant silver chain.",
-                gallery: ["https://i.postimg.cc/K8ZQ7Fk6/616q1w9f-Y7L-AC-SY535.jpg", "https://i.postimg.cc/ZqvNpDc1/1601734577-0340-0340.jpg", "https://i.postimg.cc/JnWsJ7tx/71je-Pt8SZt-L-AC-UY1000.jpg", "https://i.postimg.cc/k5W4nrwW/infinity-heart-symbol-charm-link-bracelet-for-women-925-sterling-silver-bracelet.webp", "https://i.postimg.cc/fyqWHMWC/71x-S8RPMPPL-AC-UY1000.jpg"],
-                icons: ["Sterling Silver", "Secure Clasp", "Collectible", "Hand Finished"],
-                love: "Charm bracelets are back in style. It's a sweet, nostalgic way to accessorize that feels personal and thoughtful.",
-                bullets: [
-                    "Durable Chain: Strong links designed to hold multiple charms.",
-                    "Mix & Match: Compatible with most standard charm brands.",
-                    "Sentimental Gift: The perfect base for a lifetime collection."
-                ],
-                colors: ["Silver", "RED", "Gold"],
-                link: 'https://amzn.to/48T0T64'
-            },
-            {
-                id: 11, 
-                cat: 'Accessories',
-                brand: 'Luxe Gems',
-                title: "Stackable Ring Set", 
-                subtitle: "Effortless bohemian style in one ready-to-wear set.",
-                hook: "Create a curated 'hand stack' instantly without the guesswork.",
-                gallery: ["https://i.postimg.cc/y8Yt10P3/81VZ86B8sc-L-AC-SY535.jpg", "https://i.postimg.cc/mDGSDssn/RS111-RS004-R120-R055-RS028-RS006-R015-R062-G2-AR1x1.jpg", "https://i.postimg.cc/4dtFLPf4/71XYKEWMGy-L-AC-SY535.jpg", "https://i.postimg.cc/PfSmGZCG/81m-F4f-J5lf-L-AC-SY535.jpg", "https://i.postimg.cc/PqHLvrCN/71DVF58Gv8L-AC-SY535.jpg"],
-                icons: ["Set of 5", "Mix Metals", "Various Sizes", "Dainty Bands"],
-                love: "Ring stacking is an art form. This set gives you a mix of textures and widths that look perfectly curated right out of the box.",
-                bullets: [
-                    "Instant Style: Wear them all on one finger or spread them out.",
-                    "Texture Variety: Includes smooth, twisted, and hammered finishes.",
-                    "Comfort Fit: Thin bands feel weightless on the fingers."
-                ],
-                colors: ["Gold", "Silver", "Mixed"],
-                link: 'https://amzn.to/493QjKC'
-            },
-            {
-                id: 12, 
-                cat: 'Accessories',
-                brand: 'Luxe Gems',
-                title: "Pearl Drop Earrings", 
-                subtitle: "Old Hollywood glamour reimagined for the modern woman.",
-                hook: "Luminous pearls that dangle and catch the light with every move.",
-                gallery: ["https://i.postimg.cc/DZccDMXJ/51v-KS8YZSGL-AC-SY535.jpg", "https://i.postimg.cc/zXvktpXw/81Lb0PT6Pc-L-AC-SY535.jpg", "https://i.postimg.cc/jdDzQ5Zz/71j-GFm-C5ei-L-AC-SY535.jpg", "https://i.postimg.cc/XvkF7y7R/71m-Mhg41x-QL-AC-SY535.jpg", "https://i.postimg.cc/D0H4YrBL/61y-C6d-Pxr-ZL-AC-SY535.jpg"],
-                icons: ["Freshwater Pearl", "Sterling Hooks", "Vintage Vibe", "Lightweight"],
-                love: "Pearls soften the face and add an instant touch of class. The drop style makes these feel more contemporary and less 'stiff' than traditional studs.",
-                bullets: [
-                    "Organic Shape: Baroque style pearls look natural and unique.",
-                    "Swing Movement: The drop design adds elegant movement.",
-                    "Bridal Ready: Perfect for weddings or formal events."
-                ],
-                colors: ["White/Gold", "White/Silver"],
-                link: 'https://amzn.to/3KPeR0B'
-            },
-
-            // --- SKINCARE / BEAUTY (Slots 13-18) ---
-            {
-                id: 13, 
-                cat: 'Beauty',
-                brand: 'Skin Lab',
-                title: "Hydrating Facial Moisturizer", 
-                subtitle: "A drink of water for thirsty, tired skin.",
-                hook: "Plump, dewy skin in seconds with Hyaluronic Acid power.",
-                gallery: ["https://i.postimg.cc/QtnbgnKW/Gemini-Generated-Image-jo407jo407jo407j.png", "https://i.postimg.cc/sfh69sKg/la-roche-posay-toleriane-double-repair-face-moisturizer-la-roche-posay-shop-at-exclusive-beauty-club.jpg", "https://i.postimg.cc/MGHtcSvk/4f3893f4-39b4-46e2-85b2-cc926541b71c-32c3a3f2f2384f75a37ba4b269fe3e06.png", "https://i.postimg.cc/T1dKwR3H/71fd-Oz-EZ2SL-SL1500.jpg", "https://i.postimg.cc/4dJfvWRJ/rs-la-roche-posay-toleriane-moisturizer-tout-b2f6e8bf4a5945b79b2292fbf4680fcf.jpg"],
-                icons: ["Hyaluronic Acid", "Oil-Free", "Non-Comedogenic", "24h Hydration"],
-                love: "This is a holy grail for a reason. It absorbs instantly without feeling greasy, creating the perfect smooth canvas for makeup.",
-                bullets: [
-                    "Moisture Magnet: Hyaluronic Acid pulls water into the skin.",
-                    "Barrier Repair: Ceramides help restore your natural protective layer.",
-                    "Sensitive Safe: Free from fragrance and harsh irritants."
-                ],
-                colors: ["Unscented"],
-                link: 'https://amzn.to/4oO5GeM'
-            },
-            {
-                id: 14, 
-                cat: 'Beauty',
-                brand: 'Skin Lab',
-                title: "Broad-Spectrum Sunscreen (SPF 46)", 
-                subtitle: "The anti-aging step you absolutely cannot skip.",
-                hook: "Invisible daily protection that feels like a light lotion, not a sunscreen.",
-                gallery: ["https://i.postimg.cc/C5csMrS5/61pg7GRP3GL-SL1500.jpg", "https://i.postimg.cc/Nf0xCtkJ/718O-XQmj-EL-SL1500.jpg", "https://i.postimg.cc/5yK8WHS9/61DRya8fw-TL-SL1080.jpg", "https://i.postimg.cc/wB5JT4k9/618Ze-YTGsw-L-SL1080.jpg", "https://i.postimg.cc/Ghs4mScf/Gemini-Generated-Image-7e9nmt7e9nmt7e9n.png"],
-                icons: ["SPF 46", "No White Cast", "Reef Safe", "Non-Greasy"],
-                love: "The best sunscreen is the one you actually want to wear. This formula disappears into the skin with zero white cast, making it perfect for all skin tones.",
-                bullets: [
-                    "High Protection: Blocks 98% of harmful UV rays.",
-                    "Makeup Primer: Velvet finish doubles as a great base.",
-                    "Lightweight: No heavy, sticky feeling or sunscreen smell."
-                ],
-                colors: ["Invisible"],
-                link: 'https://amzn.to/4adk5he'
-            },
-            {
-                id: 15, 
-                cat: 'Beauty',
-                brand: 'Skin Lab',
-                title: "Retinol Night Serum", 
-                subtitle: "Wake up to smoother, younger-looking skin.",
-                hook: "Your overnight eraser for fine lines and texture.",
-                gallery: ["https://i.postimg.cc/tTQjD20s/71R7z-JGe-Xw-L-SL1500.jpg", "https://i.postimg.cc/sxTbFJL8/61mb-Mmj7kd-L-SL1000.jpg", "https://i.postimg.cc/bJTBbTp6/91Eo-b-Lon-JL-SL1500.jpg", "https://i.postimg.cc/2SZ9TmCF/8138ucv-EZJL-SL1500.jpg", "https://i.postimg.cc/qvyQyLGX/812Jy-Fx3lo-L-SL1500.jpg"],
-                icons: ["Anti-Aging", "Cell Renewal", "Smooth Texture", "Night Use"],
-                love: "Retinol is the gold standard for anti-aging. This serum gentle resurfaces skin while you sleep, revealing a fresh glow by morning.",
-                bullets: [
-                    "Collagen Boost: Stimulates cell production to firm skin.",
-                    "Texture Smoothing: Reduces the appearance of pores and scars.",
-                    "Gradual Release: Formulated to minimize irritation."
-                ],
-                colors: ["Serum"],
-                link: 'https://amzn.to/4pGh7qs'
-            },
-            {
-                id: 16, 
-                cat: 'Beauty',
-                brand: 'Skin Lab',
-                title: "Gentle Facial Cleanser", 
-                subtitle: "A fresh start for your face without the tight, dry feeling.",
-                hook: "Dissolves impurities while keeping your skin barrier happy.",
-                gallery: ["https://i.postimg.cc/RhGhjj9s/Gemini-Generated-Image-7ub85d7ub85d7ub8.png", "https://i.postimg.cc/x1NjRkkF/91r-ti-NBvm-L-SL1500.jpg", "https://m.media-amazon.com/images/I/71ASH3abW4L._SL1500_.jpg", "https://i.postimg.cc/wTydKC61/81fz-Hs-Api-EL-AC-UF350-350-QL80.jpg", "https://i.postimg.cc/C1LWctPk/71Kyx-G-Gu-LL-AC-UF350-350-QL80.jpg"],
-                icons: ["pH Balanced", "Soap Free", "Removes Makeup", "Daily Use"],
-                love: "Finally, a cleanser that cleans without stripping. It leaves skin feeling soft and balanced, never squeaky-clean or irritated.",
-                bullets: [
-                    "Effective Cleanse: Removes dirt, oil, and light makeup.",
-                    "Soothing Formula: Calms redness and sensitive skin.",
-                    "Creamy Texture: Feels luxurious and gentle to massage in."
-                ],
-                colors: ["Unscented"],
-                link: 'https://amzn.to/44VBpDL'
-            },
-            {
-                id: 17, 
-                cat: 'Beauty',
-                brand: 'Skin Lab',
-                title: "Sheet Hydrating Masks", 
-                subtitle: "An instant spa day in a packet.",
-                hook: "Drench your skin in concentrated serum for an immediate glow up.",
-                gallery: ["https://i.postimg.cc/pTfJnXYK/61xgmy0lu-AL-SX679.jpg", "https://i.postimg.cc/zGywFkFv/61-Xc-A7c5e-L-SL1280.jpg", "https://i.postimg.cc/x8jMJGdQ/61KUXpv-Fgk-L-SL1280.jpg", "https://i.postimg.cc/25pWFN5y/61u-GAG-ovg-L-SL1280.jpg", "https://i.postimg.cc/Y9MmZNYv/71Un-KUINh-JL-SL1280.jpg"],
-                icons: ["Instant Glow", "Deep Moisture", "Travel Friendly", "15 Min"],
-                love: "Perfect for before a big event or after a long flight. These masks force-feed moisture into your skin, leaving it plump and radiant.",
-                bullets: [
-                    "Serum Soaked: Packed with calming and hydrating ingredients.",
-                    "Perfect Fit: Adheres to facial contours for maximum absorption.",
-                    "Cooling Effect: Instantly reduces redness and heat."
-                ],
-                colors: ["Various"],
-                link: 'https://amzn.to/4rPbNlM'
-            },
-            {
-                id: 18, 
-                cat: 'Beauty',
-                brand: 'Skin Lab',
-                title: "SPF Lip Balm", 
-                subtitle: "Protect your pout from sun damage and chapping.",
-                hook: "Soft, protected lips with a hint of shine.",
-                gallery: ["https://i.postimg.cc/vZv19gpM/61Kip-Jxoxu-L-SL1500.jpg", "https://i.postimg.cc/Gmz290yc/61ec-MGrdj-L-SL1500.jpg", "https://i.postimg.cc/pXHXZVfg/81Z8b-Ig6gy-L-SL1500.jpg", "https://i.postimg.cc/Y0wkb8WP/71Ljakm-XV3L-SL1500.jpg", "https://i.postimg.cc/GhKrxFhN/81Qqrgl-GBVL-SL1500.jpg"],
-                icons: ["Sun Protection", "Vitamin E", "Water Resistant", "Non-Sticky"],
-                love: "Lips burn too! This balm offers essential UV protection while keeping lips soft and kissable. A beach bag essential.",
-                bullets: [
-                    "Prevent Aging: Protects delicate lip skin from sun lines.",
-                    "Heal Dryness: Soothes chapped or wind-burned lips.",
-                    "Daily Wear: Clear formula works alone or over lipstick."
-                ],
-                colors: ["Clear"],
-                link: 'https://amzn.to/4oKY2Sr'
-            }
-        ];
-
-        // --- 2. LOGIC ---
+    <div class="grid-container">
         
-        // FAILSAFE ANIMATION OBSERVER
-        const observerOptions = {
-            threshold: 0.1
-        };
+        <div class="product-card">
+            <a href="YOUR_FASHION_LINK_HERE" target="_blank" style="text-decoration:none;">
+                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80" alt="Fashion">
+                <div class="cat-title">Fashion</div>
+            </a>
+        </div>
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('card-visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
+        <div class="product-card">
+            <a href="YOUR_SKINCARE_LINK_HERE" target="_blank" style="text-decoration:none;">
+                <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=600&q=80" alt="Skincare">
+                <div class="cat-title">Skincare</div>
+            </a>
+        </div>
 
-        function renderGrid(filter = 'All') {
-            const grid = document.getElementById('product-grid');
-            grid.innerHTML = '';
-            
-            const items = filter === 'All' ? products : products.filter(p => p.cat === filter);
-            
-            items.forEach((p, index) => {
-                const el = document.createElement('div');
-                el.className = 'product-card card-hidden'; // Start hidden
-                el.style.transitionDelay = `${(index % 3) * 100}ms`;
+    </div>
 
-                el.onclick = () => renderPDP(p.id);
-                
-                // Use first image
-                const mainImg = p.gallery && p.gallery.length > 0 ? p.gallery[0] : '';
-                
-                // SMART ZOOM LOGIC
-                const isZoomed = [1, 2, 3, 4].includes(p.id);
-                const imgStyle = isZoomed 
-                    ? 'object-fit: cover; object-position: top;' 
-                    : 'object-fit: contain;'; 
-                
-                el.innerHTML = `
-                    <div class="p-img-wrap">
-                        <img src="${mainImg}" class="p-img" style="${imgStyle}">
-                    </div>
-                    <div class="p-info">
-                        <div class="p-text">
-                            <div class="p-brand">${p.brand}</div>
-                            <h3 class="p-title">${p.title}</h3>
-                            <div class="p-btn">View Details</div>
-                        </div>
-                    </div>
-                `;
-                grid.appendChild(el);
-                observer.observe(el); 
-            });
-            
-            // Failsafe
-            setTimeout(() => {
-                document.querySelectorAll('.product-card').forEach(c => c.classList.add('card-visible'));
-            }, 1000); 
-        }
-
-        function renderPDP(id) {
-            const p = products.find(x => x.id === id);
-            
-            document.getElementById('view-home').classList.remove('active');
-            document.getElementById('view-product').classList.add('active');
-            window.scrollTo(0,0);
-
-            // Fill Info
-            document.getElementById('pdp-brand').innerText = p.brand;
-            document.getElementById('pdp-title').innerText = p.title;
-            document.getElementById('pdp-subtitle').innerText = p.subtitle;
-            document.getElementById('pdp-hook').innerText = p.hook;
-            document.getElementById('pdp-love').innerText = p.love;
-            document.getElementById('pdp-link').href = p.link;
-            
-            // Fill Bullets
-            document.getElementById('pdp-bullets').innerHTML = p.bullets.map(b => `<li><i class="fa-solid fa-check"></i> ${b}</li>`).join('');
-
-            // Fill Icons
-            document.getElementById('pdp-icons').innerHTML = p.icons ? p.icons.map(i => `<div class="icon-item"><i class="fa-solid fa-star"></i> ${i}</div>`).join('') : '';
-
-            // Fill Colors
-            document.getElementById('pdp-colors').innerHTML = p.colors ? p.colors.map(c => `<div class="swatch">${c}</div>`).join('') : '';
-
-            // Fill Gallery
-            const mainImg = document.getElementById('pdp-main-img');
-            const thumbs = document.getElementById('pdp-thumbs');
-            
-            if(p.gallery && p.gallery.length > 0) {
-                mainImg.src = p.gallery[0];
-                thumbs.innerHTML = '';
-                p.gallery.forEach((src, idx) => {
-                    const t = document.createElement('img');
-                    t.src = src;
-                    t.className = idx === 0 ? 'thumb active' : 'thumb';
-                    t.onclick = () => {
-                        mainImg.src = src;
-                        document.querySelectorAll('.thumb').forEach(el => el.classList.remove('active'));
-                        t.classList.add('active');
-                    };
-                    thumbs.appendChild(t);
-                });
-            }
-        }
-
-        function renderHome() {
-            document.getElementById('view-product').classList.remove('active');
-            document.getElementById('view-home').classList.add('active');
-            window.scrollTo(0,0);
-        }
-
-        function filterCat(cat) {
-            renderHome();
-            renderGrid(cat);
-            document.getElementById('shop-section').scrollIntoView();
-        }
-
-        // Init
-        renderGrid();
-    </script>
 </body>
 </html>
