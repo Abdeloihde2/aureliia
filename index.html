@@ -84,15 +84,15 @@
         .nav-link { font-size: 12px; font-weight: 500; color: var(--text-white); text-transform: uppercase; letter-spacing: 2px; opacity: 0.9; transition: 0.3s; }
         .nav-link:hover { opacity: 1; color: var(--accent); }
 
-        /* --- 5. HERO SECTION (REDESIGNED) --- */
+        /* --- 5. HERO SECTION --- */
         .hero-split {
-            display: grid; grid-template-columns: 50% 50%; /* Adjusted for better spacing */
+            display: grid; grid-template-columns: 50% 50%;
             height: 100vh; width: 100%; position: relative; overflow: hidden;
         }
 
         .hero-left {
             background-color: var(--bg-dark);
-            padding: 100px 80px; /* Increased Padding */
+            padding: 100px 80px;
             display: flex; flex-direction: column; justify-content: center;
             color: var(--text-white);
             position: relative; z-index: 2;
@@ -101,7 +101,7 @@
         .hero-tag {
             font-size: 11px; letter-spacing: 3px; text-transform: uppercase; 
             color: var(--accent); margin-bottom: 25px; font-weight: 600;
-            border-left: 1px solid var(--accent); padding-left: 15px; /* Added accent line */
+            border-left: 1px solid var(--accent); padding-left: 15px;
         }
         
         .hero-title {
@@ -135,11 +135,11 @@
         
         .hero-main-img {
             position: absolute; right: 0; top: 0; width: 100%; height: 100%; 
-            object-fit: cover; opacity: 1; /* Changed for better visibility */
-            filter: brightness(0.9); /* Slight dim for text contrast if needed */
+            object-fit: cover; opacity: 1;
+            filter: brightness(0.9);
         }
 
-        /* Floating Cards (Updated Text Styles) */
+        /* Floating Cards */
         .float-card {
             position: absolute; background: #fff; padding: 12px; width: 220px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.15); border: 1px solid rgba(0,0,0,0.05);
@@ -156,9 +156,9 @@
 
         .fc-1 { top: 20%; left: -60px; } 
         .fc-2 { bottom: 20%; left: 40px; }  
-        .fc-3 { top: 50%; right: -20px; display: none; } /* Hid 3rd card for cleaner look, or re-enable */
+        .fc-3 { top: 50%; right: -20px; display: none; }
 
-        /* --- 6. PRODUCT GRID SECTION --- */
+        /* --- 6. PRODUCT GRID SECTION (UPDATED) --- */
         .section { padding: 120px 40px; max-width: var(--container); margin: 0 auto; }
         .section-header { 
             display: flex; justify-content: space-between; align-items: end; 
@@ -171,14 +171,23 @@
         
         .product-card { cursor: pointer; position: relative; }
         
+        /* UPDATED IMAGE WRAPPER FOR STANDARDIZATION */
         .p-img-wrap { 
-            aspect-ratio: 3/4; overflow: hidden; margin-bottom: 20px; 
-            background: #fff; position: relative; border: 1px solid var(--border);
-            display: flex; align-items: center; justify-content: center; padding: 20px;
+            aspect-ratio: 4/5; /* Enforce 4:5 aspect ratio */
+            overflow: hidden; margin-bottom: 20px; 
+            background: #F8F7F3; /* Soft neutral background for padding */
+            position: relative; 
+            border: 1px solid rgba(26, 60, 52, 0.05); /* Subtle border */
+            display: flex; align-items: center; justify-content: center; /* Center image */
+            padding: 15px; /* Padding around image */
         }
         
-        .p-img { width: 100%; height: 100%; object-fit: contain; transition: transform 0.6s; }
-        .product-card:hover .p-img { transform: scale(1.05); }
+        /* UPDATED IMAGE STYLES */
+        .p-img { 
+            width: 100%; height: 100%; 
+            object-fit: contain; /* Ensure full visibility, no cropping */
+            /* Zoom removed for clean editorial look */
+        }
 
         .p-info { display: flex; justify-content: space-between; align-items: flex-start; }
         .p-text { flex: 1; }
@@ -614,217 +623,4 @@
                 subtitle: "A drink of water for thirsty, tired skin.",
                 hook: "Plump, dewy skin in seconds with Hyaluronic Acid power.",
                 gallery: ["https://i.postimg.cc/QtnbgnKW/Gemini-Generated-Image-jo407jo407jo407j.png", "https://i.postimg.cc/sfh69sKg/la-roche-posay-toleriane-double-repair-face-moisturizer-la-roche-posay-shop-at-exclusive-beauty-club.jpg", "https://i.postimg.cc/MGHtcSvk/4f3893f4-39b4-46e2-85b2-cc926541b71c-32c3a3f2f2384f75a37ba4b269fe3e06.png", "https://i.postimg.cc/T1dKwR3H/71fd-Oz-EZ2SL-SL1500.jpg", "https://i.postimg.cc/4dJfvWRJ/rs-la-roche-posay-toleriane-moisturizer-tout-b2f6e8bf4a5945b79b2292fbf4680fcf.jpg"],
-                icons: ["Hyaluronic Acid", "Oil-Free", "Non-Comedogenic", "24h Hydration"],
-                love: "This is a holy grail for a reason. It absorbs instantly without feeling greasy, creating the perfect smooth canvas for makeup.",
-                bullets: [
-                    "Moisture Magnet: Hyaluronic Acid pulls water into the skin.",
-                    "Barrier Repair: Ceramides help restore your natural protective layer.",
-                    "Sensitive Safe: Free from fragrance and harsh irritants."
-                ],
-                colors: ["Unscented"],
-                link: 'https://amzn.to/4oO5GeM'
-            },
-            {
-                id: 14, 
-                cat: 'Beauty',
-                brand: 'Skin Lab',
-                title: "Broad-Spectrum Sunscreen (SPF 46)", 
-                subtitle: "The anti-aging step you absolutely cannot skip.",
-                hook: "Invisible daily protection that feels like a light lotion, not a sunscreen.",
-                gallery: ["https://i.postimg.cc/C5csMrS5/61pg7GRP3GL-SL1500.jpg", "https://i.postimg.cc/Nf0xCtkJ/718O-XQmj-EL-SL1500.jpg", "https://i.postimg.cc/5yK8WHS9/61DRya8fw-TL-SL1080.jpg", "https://i.postimg.cc/wB5JT4k9/618Ze-YTGsw-L-SL1080.jpg", "https://i.postimg.cc/Ghs4mScf/Gemini-Generated-Image-7e9nmt7e9nmt7e9n.png"],
-                icons: ["SPF 46", "No White Cast", "Reef Safe", "Non-Greasy"],
-                love: "The best sunscreen is the one you actually want to wear. This formula disappears into the skin with zero white cast, making it perfect for all skin tones.",
-                bullets: [
-                    "High Protection: Blocks 98% of harmful UV rays.",
-                    "Makeup Primer: Velvet finish doubles as a great base.",
-                    "Lightweight: No heavy, sticky feeling or sunscreen smell."
-                ],
-                colors: ["Invisible"],
-                link: 'https://amzn.to/4adk5he'
-            },
-            {
-                id: 15, 
-                cat: 'Beauty',
-                brand: 'Skin Lab',
-                title: "Retinol Night Serum", 
-                subtitle: "Wake up to smoother, younger-looking skin.",
-                hook: "Your overnight eraser for fine lines and texture.",
-                gallery: ["https://i.postimg.cc/tTQjD20s/71R7z-JGe-Xw-L-SL1500.jpg", "https://i.postimg.cc/sxTbFJL8/61mb-Mmj7kd-L-SL1000.jpg", "https://i.postimg.cc/bJTBbTp6/91Eo-b-Lon-JL-SL1500.jpg", "https://i.postimg.cc/2SZ9TmCF/8138ucv-EZJL-SL1500.jpg", "https://i.postimg.cc/qvyQyLGX/812Jy-Fx3lo-L-SL1500.jpg"],
-                icons: ["Anti-Aging", "Cell Renewal", "Smooth Texture", "Night Use"],
-                love: "Retinol is the gold standard for anti-aging. This serum gentle resurfaces skin while you sleep, revealing a fresh glow by morning.",
-                bullets: [
-                    "Collagen Boost: Stimulates cell production to firm skin.",
-                    "Texture Smoothing: Reduces the appearance of pores and scars.",
-                    "Gradual Release: Formulated to minimize irritation."
-                ],
-                colors: ["Serum"],
-                link: 'https://amzn.to/4pGh7qs'
-            },
-            {
-                id: 16, 
-                cat: 'Beauty',
-                brand: 'Skin Lab',
-                title: "Gentle Facial Cleanser", 
-                subtitle: "A fresh start for your face without the tight, dry feeling.",
-                hook: "Dissolves impurities while keeping your skin barrier happy.",
-                gallery: ["https://i.postimg.cc/RhGhjj9s/Gemini-Generated-Image-7ub85d7ub85d7ub8.png", "https://i.postimg.cc/x1NjRkkF/91r-ti-NBvm-L-SL1500.jpg", "https://m.media-amazon.com/images/I/71ASH3abW4L._SL1500_.jpg", "https://i.postimg.cc/wTydKC61/81fz-Hs-Api-EL-AC-UF350-350-QL80.jpg", "https://i.postimg.cc/C1LWctPk/71Kyx-G-Gu-LL-AC-UF350-350-QL80.jpg"],
-                icons: ["pH Balanced", "Soap Free", "Removes Makeup", "Daily Use"],
-                love: "Finally, a cleanser that cleans without stripping. It leaves skin feeling soft and balanced, never squeaky-clean or irritated.",
-                bullets: [
-                    "Effective Cleanse: Removes dirt, oil, and light makeup.",
-                    "Soothing Formula: Calms redness and sensitive skin.",
-                    "Creamy Texture: Feels luxurious and gentle to massage in."
-                ],
-                colors: ["Unscented"],
-                link: 'https://amzn.to/44VBpDL'
-            },
-            {
-                id: 17, 
-                cat: 'Beauty',
-                brand: 'Skin Lab',
-                title: "Sheet Hydrating Masks", 
-                subtitle: "An instant spa day in a packet.",
-                hook: "Drench your skin in concentrated serum for an immediate glow up.",
-                gallery: ["https://i.postimg.cc/pTfJnXYK/61xgmy0lu-AL-SX679.jpg", "https://i.postimg.cc/zGywFkFv/61-Xc-A7c5e-L-SL1280.jpg", "https://i.postimg.cc/x8jMJGdQ/61KUXpv-Fgk-L-SL1280.jpg", "https://i.postimg.cc/25pWFN5y/61u-GAG-ovg-L-SL1280.jpg", "https://i.postimg.cc/Y9MmZNYv/71Un-KUINh-JL-SL1280.jpg"],
-                icons: ["Instant Glow", "Deep Moisture", "Travel Friendly", "15 Min"],
-                love: "Perfect for before a big event or after a long flight. These masks force-feed moisture into your skin, leaving it plump and radiant.",
-                bullets: [
-                    "Serum Soaked: Packed with calming and hydrating ingredients.",
-                    "Perfect Fit: Adheres to facial contours for maximum absorption.",
-                    "Cooling Effect: Instantly reduces redness and heat."
-                ],
-                colors: ["Various"],
-                link: 'https://amzn.to/4rPbNlM'
-            },
-            {
-                id: 18, 
-                cat: 'Beauty',
-                brand: 'Skin Lab',
-                title: "SPF Lip Balm", 
-                subtitle: "Protect your pout from sun damage and chapping.",
-                hook: "Soft, protected lips with a hint of shine.",
-                gallery: ["https://i.postimg.cc/vZv19gpM/61Kip-Jxoxu-L-SL1500.jpg", "https://i.postimg.cc/Gmz290yc/61ec-MGrdj-L-SL1500.jpg", "https://i.postimg.cc/pXHXZVfg/81Z8b-Ig6gy-L-SL1500.jpg", "https://i.postimg.cc/Y0wkb8WP/71Ljakm-XV3L-SL1500.jpg", "https://i.postimg.cc/GhKrxFhN/81Qqrgl-GBVL-SL1500.jpg"],
-                icons: ["Sun Protection", "Vitamin E", "Water Resistant", "Non-Sticky"],
-                love: "Lips burn too! This balm offers essential UV protection while keeping lips soft and kissable. A beach bag essential.",
-                bullets: [
-                    "Prevent Aging: Protects delicate lip skin from sun lines.",
-                    "Heal Dryness: Soothes chapped or wind-burned lips.",
-                    "Daily Wear: Clear formula works alone or over lipstick."
-                ],
-                colors: ["Clear"],
-                link: 'https://amzn.to/4oKY2Sr'
-            }
-        ];
-
-        // --- 2. LOGIC ---
-        
-        // INTERSECTION OBSERVER FOR SCROLL ANIMATIONS
-        const observerOptions = {
-            threshold: 0.1 // Trigger when 10% of element is visible
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('card-visible');
-                    observer.unobserve(entry.target); // Stop watching after animation
-                }
-            });
-        }, observerOptions);
-
-        function renderGrid(filter = 'All') {
-            const grid = document.getElementById('product-grid');
-            grid.innerHTML = '';
-            
-            const items = filter === 'All' ? products : products.filter(p => p.cat === filter);
-            
-            items.forEach((p, index) => {
-                const el = document.createElement('div');
-                el.className = 'product-card card-hidden'; // Initial hidden state
-                
-                // Add staggered delay for nice effect (modulo 3 for row behavior)
-                el.style.transitionDelay = `${(index % 3) * 100}ms`;
-
-                el.onclick = () => renderPDP(p.id);
-                
-                // Use first image
-                const mainImg = p.gallery && p.gallery.length > 0 ? p.gallery[0] : '';
-                
-                el.innerHTML = `
-                    <div class="p-img-wrap"><img src="${mainImg}" class="p-img"></div>
-                    <div class="p-info">
-                        <div class="p-text">
-                            <div class="p-brand">${p.brand}</div>
-                            <h3 class="p-title">${p.title}</h3>
-                            <div class="p-rating"><i class="fa-solid fa-star"></i> ${p.rating || '4.8'}</div>
-                        </div>
-                        <div class="p-arrow"><i class="fa-solid fa-arrow-right"></i></div>
-                    </div>
-                `;
-                grid.appendChild(el);
-                observer.observe(el); // Start watching this element
-            });
-        }
-
-        function renderPDP(id) {
-            const p = products.find(x => x.id === id);
-            
-            document.getElementById('view-home').classList.remove('active');
-            document.getElementById('view-product').classList.add('active');
-            window.scrollTo(0,0);
-
-            // Fill Info
-            document.getElementById('pdp-brand').innerText = p.brand;
-            document.getElementById('pdp-title').innerText = p.title;
-            document.getElementById('pdp-subtitle').innerText = p.subtitle;
-            document.getElementById('pdp-hook').innerText = p.hook;
-            document.getElementById('pdp-love').innerText = p.love;
-            document.getElementById('pdp-link').href = p.link;
-            
-            // Fill Bullets
-            document.getElementById('pdp-bullets').innerHTML = p.bullets.map(b => `<li><i class="fa-solid fa-check"></i> ${b}</li>`).join('');
-
-            // Fill Icons
-            document.getElementById('pdp-icons').innerHTML = p.icons ? p.icons.map(i => `<div class="icon-item"><i class="fa-solid fa-star"></i> ${i}</div>`).join('') : '';
-
-            // Fill Colors
-            document.getElementById('pdp-colors').innerHTML = p.colors ? p.colors.map(c => `<div class="swatch">${c}</div>`).join('') : '';
-
-            // Fill Gallery
-            const mainImg = document.getElementById('pdp-main-img');
-            const thumbs = document.getElementById('pdp-thumbs');
-            
-            if(p.gallery && p.gallery.length > 0) {
-                mainImg.src = p.gallery[0];
-                thumbs.innerHTML = '';
-                p.gallery.forEach((src, idx) => {
-                    const t = document.createElement('img');
-                    t.src = src;
-                    t.className = idx === 0 ? 'thumb active' : 'thumb';
-                    t.onclick = () => {
-                        mainImg.src = src;
-                        document.querySelectorAll('.thumb').forEach(el => el.classList.remove('active'));
-                        t.classList.add('active');
-                    };
-                    thumbs.appendChild(t);
-                });
-            }
-        }
-
-        function renderHome() {
-            document.getElementById('view-product').classList.remove('active');
-            document.getElementById('view-home').classList.add('active');
-            window.scrollTo(0,0);
-        }
-
-        function filterCat(cat) {
-            renderHome();
-            renderGrid(cat);
-            document.getElementById('shop-section').scrollIntoView();
-        }
-
-        // Init
-        renderGrid();
-    </script>
-</body>
-</html>
+                icons: ["Hyaluronic Acid", "Oil-Free", "Non-Com
