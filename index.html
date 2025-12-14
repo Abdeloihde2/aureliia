@@ -44,11 +44,36 @@
         img { display: block; width: 100%; height: auto; object-fit: cover; }
         button { border: none; background: none; cursor: pointer; font-family: inherit; }
 
-        /* Animation */
-        .fade-in { animation: fadeIn 1s ease-out forwards; opacity: 0; }
-        @keyframes fadeIn { to { opacity: 1; } }
+        /* --- 3. ANIMATIONS (NEW) --- */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes scaleIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
 
-        /* --- 3. HEADER --- */
+        .animate-up { opacity: 0; animation: fadeInUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+        .animate-in { opacity: 0; animation: fadeIn 1.2s ease-out forwards; }
+        .animate-left { opacity: 0; animation: slideInLeft 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+        .animate-scale { opacity: 0; animation: scaleIn 0.8s ease-out forwards; }
+
+        /* Delays for Staggering */
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+
+        /* --- 4. HEADER --- */
         header {
             position: absolute; top: 0; left: 0; width: 100%; padding: 25px 50px;
             display: flex; justify-content: space-between; align-items: center;
@@ -60,7 +85,7 @@
         .nav-link { font-size: 11px; font-weight: 600; color: var(--text-white); text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.8; transition: 0.3s; }
         .nav-link:hover { opacity: 1; color: var(--accent); }
 
-        /* --- 4. HERO SECTION --- */
+        /* --- 5. HERO SECTION --- */
         .hero-split {
             display: grid; grid-template-columns: 45% 55%;
             height: 100vh; width: 100%; position: relative; overflow: hidden;
@@ -71,7 +96,7 @@
             padding: 100px 60px;
             display: flex; flex-direction: column; justify-content: center;
             color: var(--text-white);
-            position: relative;
+            position: relative; z-index: 2;
         }
         .hero-tag {
             font-size: 12px; letter-spacing: 2px; text-transform: uppercase; 
@@ -120,7 +145,7 @@
         .fc-2 { top: 50%; left: 80px; }  
         .fc-3 { bottom: 15%; left: -30px; } 
 
-        /* --- 5. PRODUCT GRID SECTION --- */
+        /* --- 6. PRODUCT GRID SECTION --- */
         .section { padding: 100px 40px; max-width: var(--container); margin: 0 auto; }
         .section-header { 
             display: flex; justify-content: space-between; align-items: end; 
@@ -131,7 +156,8 @@
 
         .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 40px 20px; }
         
-        .product-card { cursor: pointer; group: relative; }
+        /* Animation applied via JS */
+        .product-card { cursor: pointer; opacity: 0; /* Hidden initially for animation */ }
         
         .p-img-wrap { 
             aspect-ratio: 3/4; overflow: hidden; margin-bottom: 20px; 
@@ -156,8 +182,8 @@
         }
         .product-card:hover .p-arrow { background: var(--text-main); color: #fff; }
 
-        /* --- 6. PRODUCT PAGE --- */
-        #view-home, #view-product { display: none; opacity: 0; transition: opacity 0.4s; }
+        /* --- 7. PRODUCT PAGE (SPA) --- */
+        #view-home, #view-product { display: none; opacity: 0; transition: opacity 0.5s ease; }
         #view-home.active, #view-product.active { display: block; opacity: 1; }
 
         .pdp-wrapper { padding-top: 80px; min-height: 100vh; background: var(--bg-body); }
@@ -180,10 +206,10 @@
             background: #fff; border: 1px solid var(--border); aspect-ratio: 3/4; 
             display: flex; align-items: center; justify-content: center; margin-bottom: 20px;
         }
-        /* FIX: Removed blend mode so all photo types work */
+        /* FIX: Removed blend mode */
         .pdp-main-img { width: 90%; height: 90%; object-fit: contain; }
         
-        /* FIX: Added wrap so thumbnails don't disappear on small screens */
+        /* FIX: Wrap thumbnails */
         .pdp-thumbs { display: flex; gap: 10px; flex-wrap: wrap; }
         .thumb { 
             width: 70px; height: 70px; border: 1px solid var(--border); background: #fff; 
@@ -221,7 +247,7 @@
         }
         .btn-buy:hover { background: var(--accent); color: var(--text-main); }
 
-        /* --- 7. FOOTER --- */
+        /* --- 8. FOOTER --- */
         footer { background: var(--bg-dark); color: var(--text-white); padding: 80px 40px; text-align: center; }
         .footer-logo { font-family: var(--font-head); font-size: 30px; margin-bottom: 20px; }
         .footer-text { opacity: 0.6; font-size: 12px; max-width: 500px; margin: 0 auto; line-height: 1.6; }
@@ -248,41 +274,41 @@
 <body>
 
     <header>
-        <div class="logo" onclick="renderHome()" style="cursor: pointer;">AURELIA.</div>
-        <nav class="nav-links">
+        <div class="logo animate-in" onclick="renderHome()" style="cursor: pointer;">AURELIA.</div>
+        <nav class="nav-links animate-in delay-2">
             <a class="nav-link" onclick="filterCat('Fashion')">The Wardrobe</a>
             <a class="nav-link" onclick="filterCat('Accessories')">Jewelry Box</a>
             <a class="nav-link" onclick="filterCat('Beauty')">Vanity</a>
         </nav>
-        <div style="color:var(--accent); font-size:18px;"><i class="fa-solid fa-magnifying-glass"></i></div>
+        <div class="animate-in delay-2" style="color:var(--accent); font-size:18px;"><i class="fa-solid fa-magnifying-glass"></i></div>
     </header>
 
     <div id="view-home" class="active">
         
         <section class="hero-split">
-            <div class="hero-left fade-in">
-                <span class="hero-tag">EST. 2025 • WINTER COLLECTION</span>
-                <h1 class="hero-title">Elevate Your<br>Rituals.</h1>
-                <p class="hero-desc">A curated edit of winter fashion, fine jewelry, and skincare for the modern woman who values quality over quantity.</p>
-                <div class="btn-gold" onclick="document.getElementById('shop-section').scrollIntoView()">Explore The Edit</div>
+            <div class="hero-left">
+                <span class="hero-tag animate-left delay-1">EST. 2025 • WINTER COLLECTION</span>
+                <h1 class="hero-title animate-left delay-2">Elevate Your<br>Rituals.</h1>
+                <p class="hero-desc animate-left delay-3">A curated edit of winter fashion, fine jewelry, and skincare for the modern woman who values quality over quantity.</p>
+                <div class="btn-gold animate-up delay-4" onclick="document.getElementById('shop-section').scrollIntoView()">Explore The Edit</div>
             </div>
 
-            <div class="hero-right fade-in">
-                <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2000" class="hero-main-img">
+            <div class="hero-right">
+                <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2000" class="hero-main-img animate-in">
                 
-                <div class="float-card fc-1" onclick="filterCat('Fashion')">
+                <div class="float-card fc-1 animate-scale delay-2" onclick="filterCat('Fashion')">
                     <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=400" class="fc-img">
                     <div class="fc-title">Fashion</div>
                     <span class="fc-link">View Collection &rarr;</span>
                 </div>
 
-                <div class="float-card fc-2" onclick="filterCat('Accessories')">
+                <div class="float-card fc-2 animate-scale delay-3" onclick="filterCat('Accessories')">
                     <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?q=80&w=400" class="fc-img">
                     <div class="fc-title">Jewelry</div>
                     <span class="fc-link">View Gems &rarr;</span>
                 </div>
 
-                <div class="float-card fc-3" onclick="filterCat('Beauty')">
+                <div class="float-card fc-3 animate-scale delay-4" onclick="filterCat('Beauty')">
                     <img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?q=80&w=400" class="fc-img">
                     <div class="fc-title">Skincare</div>
                     <span class="fc-link">View Rituals &rarr;</span>
@@ -291,7 +317,7 @@
         </section>
 
         <section class="section" id="shop-section">
-            <div class="section-header">
+            <div class="section-header animate-up">
                 <div class="sh-title">
                     <h2>The Collection</h2>
                 </div>
@@ -305,13 +331,13 @@
 
     <div id="view-product">
         <div class="pdp-wrapper">
-            <div class="back-bar">
+            <div class="back-bar animate-in">
                 <div class="back-btn" onclick="renderHome()">
                     <i class="fa-solid fa-arrow-left"></i> Back to Collection
                 </div>
             </div>
 
-            <div class="pdp-container">
+            <div class="pdp-container animate-up">
                 <div class="pdp-left">
                     <div class="pdp-main-box">
                         <img id="pdp-main-img" src="" class="pdp-main-img">
@@ -350,7 +376,7 @@
     </footer>
 
     <script>
-        /* --- 1. PRODUCT DATA (YOUR DATA PRESERVED) --- */
+        /* --- 1. PRODUCT DATA (PRESERVED) --- */
         const products = [
             // --- FASHION (Slots 1-6) ---
             {
@@ -690,9 +716,11 @@
             
             const items = filter === 'All' ? products : products.filter(p => p.cat === filter);
             
-            items.forEach(p => {
+            items.forEach((p, index) => {
                 const el = document.createElement('div');
-                el.className = 'product-card';
+                el.className = 'product-card animate-up'; // Add base animation class
+                el.style.animationDelay = `${index * 0.05}s`; // Stagger animation
+                
                 el.onclick = () => renderPDP(p.id);
                 
                 // Use first image
