@@ -6,37 +6,29 @@
     <title>Aurelia - Curated Fashion</title>
     <style>
         /* --- RESET & BASE STYLES --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Georgia', 'Times New Roman', serif; /* Matching the elegant serif look */
+            font-family: 'Georgia', 'Times New Roman', serif;
             background-color: #13322B; /* Deep Hunter Green */
             color: #ffffff;
             line-height: 1.5;
-            overflow-x: hidden; /* Prevents horizontal scroll */
+            overflow-x: hidden;
         }
 
         /* --- NAVIGATION BAR --- */
         nav {
-            position: absolute; /* Keeps logo at the top over the background */
-            top: 0;
-            left: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 24px; /* Space around the logo */
+            position: absolute;
+            top: 0; left: 0; width: 100%;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 24px;
             z-index: 10;
         }
 
         .logo {
             font-family: 'Times New Roman', serif;
-            color: #D4AF37; /* Gold/Mustard color */
-            font-size: 1.25rem; /* approx 20px */
+            color: #D4AF37; /* Gold */
+            font-size: 1.25rem;
             font-weight: bold;
             letter-spacing: 1px;
             text-transform: uppercase;
@@ -49,9 +41,9 @@
             text-decoration: none;
         }
 
-        /* --- HERO SECTION (Text Area) --- */
+        /* --- HERO SECTION --- */
         .hero-container {
-            /* THIS IS THE FIX: Padding top creates space for the logo */
+            /* FIXED: Padding prevents text from hiding behind logo */
             padding: 140px 24px 40px 24px; 
             max-width: 800px;
             margin: 0 auto;
@@ -59,13 +51,12 @@
 
         h1 {
             font-family: 'Times New Roman', serif;
-            font-size: 3.5rem; /* Large headline size */
-            font-weight: 400; /* Regular weight looks more elegant */
+            font-size: 3.5rem;
+            font-weight: 400;
             line-height: 1.1;
             margin-bottom: 24px;
         }
 
-        /* The stylistic '&' symbol */
         .ampersand {
             display: block;
             font-style: italic;
@@ -73,19 +64,19 @@
         }
 
         p.subtext {
-            font-family: 'Helvetica', 'Arial', sans-serif; /* Sans-serif for readability */
+            font-family: 'Helvetica', 'Arial', sans-serif;
             font-size: 1.1rem;
-            color: #cbd5e1; /* Light grey for contrast */
+            color: #cbd5e1;
             margin-bottom: 40px;
             max-width: 600px;
             line-height: 1.6;
         }
 
-        /* --- BUTTON --- */
+        /* --- BUTTON (CTA) --- */
         .cta-btn {
             display: inline-block;
-            background-color: #D4AF37; /* Gold background */
-            color: #13322B; /* Dark green text */
+            background-color: #D4AF37;
+            color: #13322B;
             padding: 16px 32px;
             font-family: 'Helvetica', 'Arial', sans-serif;
             font-weight: bold;
@@ -96,54 +87,72 @@
             border: none;
             cursor: pointer;
             margin-bottom: 60px;
+            transition: opacity 0.3s;
         }
+        .cta-btn:hover { opacity: 0.9; }
 
-        /* --- DISCLAIMER TEXT --- */
+        /* --- DISCLAIMER --- */
         .disclaimer {
             font-family: 'Helvetica', 'Arial', sans-serif;
-            font-size: 0.75rem; /* Small text */
-            color: #8da399; /* Muted green-grey */
+            font-size: 0.75rem;
+            color: #8da399;
             border-top: 1px solid rgba(255,255,255,0.1);
             padding-top: 16px;
             margin-bottom: 40px;
         }
 
-        /* --- IMAGE GRID PLACEHOLDERS (Keeping layout intact) --- */
+        /* --- PRODUCTS / IMAGE GRID --- */
         .image-section {
             display: grid;
-            grid-template-columns: 1fr 1fr; /* Two columns */
+            grid-template-columns: 1fr 1fr; /* Two columns side by side */
             gap: 20px;
             padding: 0 24px 60px;
+            max-width: 1000px; /* Constraints width on large screens */
+            margin: 0 auto;
         }
         
-        .img-card {
-            background-color: #ffffff;
-            padding: 10px; /* White frame effect */
+        /* The Card Container */
+        .product-card {
+            background-color: #ffffff; /* White frame */
+            padding: 12px; 
+            text-align: left;
+            transition: transform 0.2s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px); /* Slight lift on hover */
         }
         
-        .img-card img {
+        /* Clickable area for the image */
+        .product-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .product-card img {
             width: 100%;
             height: auto;
             display: block;
+            margin-bottom: 10px;
+            aspect-ratio: 3/4; /* Ensures consistent vertical rectangle shape */
+            object-fit: cover;
         }
 
         .category-title {
             color: #13322B;
             font-family: 'Times New Roman', serif;
-            font-size: 1.2rem;
-            margin-top: 10px;
+            font-size: 1.5rem;
             font-weight: bold;
         }
 
         /* --- MOBILE ADJUSTMENTS --- */
         @media (max-width: 600px) {
-            h1 {
-                font-size: 2.8rem; /* Slightly smaller on phones */
-            }
-            .hero-container {
-                /* Ensure enough space on mobile too */
-                padding-top: 120px; 
-            }
+            h1 { font-size: 2.8rem; }
+            .hero-container { padding-top: 120px; }
+            /* On very small screens, stack images vertically? 
+               Remove below line if you want them side-by-side always */
+            /* .image-section { grid-template-columns: 1fr; } */
         }
     </style>
 </head>
@@ -166,7 +175,7 @@
             We research, test, and recommend the best high-quality winter essentials and beauty favorites. Discover our independent picks for the modern woman.
         </p>
 
-        <a href="#" class="cta-btn">View Top Picks</a>
+        <a href="#" class="cta-btn" target="_blank" rel="noopener noreferrer">View Top Picks</a>
 
         <div class="disclaimer">
             Aurelia is reader-supported. When you buy through links on our site, we may earn an affiliate commission at no extra cost to you.
@@ -174,14 +183,20 @@
     </div>
 
     <div class="image-section">
-        <div class="img-card">
-            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500&auto=format&fit=crop&q=60" alt="Fashion">
-            <div class="category-title">Fashion</div>
+        
+        <div class="product-card">
+            <a href="YOUR_FASHION_LINK_HERE" class="product-link" target="_blank" rel="noopener noreferrer">
+                <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500&auto=format&fit=crop&q=60" alt="Fashion Girl in Yellow">
+                <div class="category-title">Fashion</div>
+            </a>
         </div>
 
-        <div class="img-card">
-             <img src="https://images.unsplash.com/photo-1556228578-8c89e6fb8f97?w=500&auto=format&fit=crop&q=60" alt="Skincare">
-            </div>
+        <div class="product-card">
+            <a href="YOUR_SKINCARE_LINK_HERE" class="product-link" target="_blank" rel="noopener noreferrer">
+                <img src="https://images.unsplash.com/photo-1556228578-8c89e6fb8f97?w=500&auto=format&fit=crop&q=60" alt="Skincare Product">
+                </a>
+        </div>
+
     </div>
 
 </body>
