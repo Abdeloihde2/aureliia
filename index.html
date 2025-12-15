@@ -833,17 +833,16 @@
             gridEl.innerHTML = '';
             data.forEach((p, index) => {
                 const card = document.createElement('div');
-                card.className = 'product-card card-hidden'; // Start hidden for scroll trigger
+                card.className = 'product-card card-hidden'; 
                 card.onclick = () => loadProduct(p);
                 
-                // Add stagger delay based on index
                 card.style.transitionDelay = `${index * 50}ms`;
 
                 card.innerHTML = `
                     <div class="p-img-wrap">
                         <img src="${p.gallery[0]}" class="p-img" loading="lazy">
                         <div style="position:absolute; top:10px; right:10px; background:#fff; padding:5px 10px; font-size:10px; font-weight:bold; letter-spacing:1px; z-index:2;">
-                            ${p.id <= 6 ? 'FASHION' : (p.id <= 12 ? 'ACCESSORY' : 'BEAUTY')}
+                            ${p.cat.toUpperCase()}
                         </div>
                     </div>
                     <div class="p-info">
@@ -868,15 +867,17 @@
 
         function filterCat(category) {
             let filtered = [];
-            if(category === 'Fashion') filtered = products.filter(p => p.id <= 6);
-            else if(category === 'Accessories') filtered = products.filter(p => p.id >= 7 && p.id <= 12);
-            else if(category === 'Beauty') filtered = products.filter(p => p.id >= 13);
-            else filtered = products;
+            
+            // THE FIX: Matches the exact category name instead of ID numbers
+            if(category === 'Fashion') filtered = products.filter(p => p.cat === 'Fashion');
+            else if(category === 'Accessories') filtered = products.filter(p => p.cat === 'Accessories');
+            else if(category === 'Beauty') filtered = products.filter(p => p.cat === 'Beauty');
+            else filtered = products; // 'All'
 
             // Scroll to shop
             document.getElementById('shop-section').scrollIntoView({ behavior: 'smooth' });
             
-            // Re-render with animation reset
+            // Re-render
             gridEl.innerHTML = '';
             setTimeout(() => {
                 renderGrid(filtered);
@@ -984,5 +985,6 @@
     </script>
 </body>
 </html>
+
 
 
